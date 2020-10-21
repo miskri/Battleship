@@ -4,22 +4,52 @@
     <e p="C:\Users\Mihhail\.Rider2019.2\system\extResources" t="IncludeRecursive" />
     <e p="C:\Users\Mihhail\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_ConsoleApp.1374259956.00" t="ExcludeRecursive" />
     <e p="C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp" t="IncludeFlat">
-      <e p="ConsoleApp" t="IncludeRecursive">
+      <e p="ConsoleApp.sln" t="IncludeFlat" />
+      <e p="Game" t="IncludeRecursive">
+        <e p="BattleEventListener.cs" t="Include" />
+        <e p="BattleManager.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
-        <e p="ConsoleApp.csproj" t="IncludeRecursive" />
+        <e p="BoardRenderer.cs" t="Include" />
+        <e p="Color.cs" t="Include" />
         <e p="ConsoleApplication.cs" t="Include" />
         <e p="ConsoleMenu.cs" t="Include" />
+        <e p="FieldManager.cs" t="Include" />
+        <e p="Game.csproj" t="IncludeRecursive" />
+        <e p="GameManager.cs" t="Include" />
         <e p="MenuLevel.cs" t="Include" />
-        <e p="MenuLevelsContainer.cs" t="Include" />
+        <e p="MenuLevelDataContainer.cs" t="Include" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="ConsoleApp.AssemblyInfo.cs" t="Include" />
+              <e p="Game.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="user_settings.json" t="Include" />
+      </e>
+      <e p="GamePreload" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Class1.cs" t="Include" />
+        <e p="GamePreload.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.1" t="Include">
+              <e p="GamePreload.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
       </e>
-      <e p="ConsoleApp.sln" t="IncludeFlat" />
+      <e p="Menu" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Menu.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netstandard2.1" t="Include">
+              <e p="Menu.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
       <e p="packages" t="ExcludeRecursive" />
     </e>
   </component>
