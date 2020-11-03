@@ -2,25 +2,25 @@
 using System.Collections.Generic;
 
 namespace ConsoleApp {
-    public class FieldManager {
-        private readonly (int, int)[] _posCheck = {(1, 0), (1, -1), (1, 1), (0, 1), (0, -1), (-1, 0), (-1, 1), (-1, -1)};
+    public static class FieldManager {
+        private static readonly (int, int)[] PosCheck = {(1, 0), (1, -1), (1, 1), (0, 1), (0, -1), (-1, 0), (-1, 1), (-1, -1)};
 
-        private Random _rand = new Random();
+        private static readonly Random Rand = new Random();
 
-        public string[,] GenerateField(bool contact, int[] shipCount, int[] shipSettings, int[] battlefieldSize) {
+        public static string[,] GenerateField(bool contact, int[] shipCount, int[] shipSettings, int[] battlefieldSize) {
             Random rand = new Random();
             int height = battlefieldSize[1], weight = battlefieldSize[0];
             string[,] field = new string[height, weight];
             for (int i = 0; i < shipCount.Length; i++) {
                 for (int j = 0; j < shipCount[i]; j++) {
-                    bool putted = false;
-                    while (!putted) {
+                    bool shipPutted = false;
+                    while (!shipPutted) {
                         int h = rand.Next(0, height);
                         int w = rand.Next(0, weight);
                         List<string> directions = CheckPosition(contact, field, h, w, shipSettings[i]);
                         if (directions.Count == 0) continue;
-                        field = PutShip(contact, field, directions[_rand.Next(0, directions.Count)], h, w, shipSettings[i]);
-                        putted = true;
+                        field = PutShip(contact, field, directions[Rand.Next(0, directions.Count)], h, w, shipSettings[i]);
+                        shipPutted = true;
                     }
                 }
             }
@@ -28,19 +28,19 @@ namespace ConsoleApp {
             return field;
         }
 
-        public List<string> CheckPosition(bool contact, string[,] field, int x, int y, int shipSize) {
-            if (field[x, y] != null) return new List<string>();
+        public static List<string> CheckPosition(bool contact, string[,] field, int row, int col, int shipSize) {
+            if (field[row, col] != null && field[row, col] != "st true" && field[row, col] != "st false") return new List<string>();
             List<string> directions = new List<string>();
             if (!contact) {
                 for (int i = 0; i < shipSize; i++) {
-                    if (!CheckAround(field, x + i, y)) break;
+                    if (!CheckAround(field, row + i, col)) break;
                     if (i == shipSize - 1) {
                         directions.Add("right");
                     }
                 }
 
                 for (int j = 0; j < shipSize; j++) {
-                    if (!CheckAround(field, x, y + j)) break;
+                    if (!CheckAround(field, row, col + j)) break;
                     if (j == shipSize - 1) {
                         directions.Add("down");
                     }
@@ -48,14 +48,14 @@ namespace ConsoleApp {
             }
             else {
                 for (int a = 0; a < shipSize; a++) {
-                    if (x + a >= field.GetLength(0) || field[x + a, y] != null) break;
+                    if (row + a >= field.GetLength(0) || field[row + a, col] != null && field[row + a, col] != "ship template") break;
                     if (a == shipSize - 1) {
                         directions.Add("right");
                     }
                 }
 
                 for (int b = 0; b < shipSize; b++) {
-                    if (y + b >= field.GetLength(1) || field[x, y + b] != null) break;
+                    if (col + b >= field.GetLength(1) || field[row, col + b] != null && field[row, col + b] != "ship template") break;
                     if (b == shipSize - 1) {
                         directions.Add("down");
                     }
@@ -65,35 +65,35 @@ namespace ConsoleApp {
             return directions;
         }
 
-        private bool CheckAround(string[,] field, int x, int y) {
-            if (!(x >= 0 && x < field.GetLength(0) && y >= 0 && y < field.GetLength(1))) return false;
-            foreach (var (item1, item2) in _posCheck) {
+        private static bool CheckAround(string[,] field, int row, int col) {
+            if (!(row >= 0 && row < field.GetLength(0) && col >= 0 && col < field.GetLength(1))) return false;
+            foreach (var (item1, item2) in PosCheck) {
                 try {
-                    if (field[x + item1, y + item2] != null) {
+                    if (field[row + item1, col + item2] == "ship") {
                         return false;
                     }
                 }
-                catch (IndexOutOfRangeException e) {
+                catch (IndexOutOfRangeException) {
                 }
             }
 
             return true;
         }
 
-        public string[,] PutShip(bool contact, string[,] field, string direction, int x, int y, int shipSize ) {
+        public static string[,] PutShip(bool contact, string[,] field, string direction, int row, int col, int shipSize ) {
             if (direction == "right") {
                 for (int i = 0; i < shipSize; i++) {
-                    field[x + i, y] = "ship";
+                    field[row + i, col] = "ship";
                     if (!contact) {
-                        field = PutBordersAround(field, x + i, y);
+                        field = PutBordersAround(field, row + i, col);
                     }
                 }
             }
             else {
                 for (int j = 0; j < shipSize; j++) {
-                    field[x, y + j] = "ship";
+                    field[row, col + j] = "ship";
                     if (!contact) {
-                        field = PutBordersAround(field, x, y + j);
+                        field = PutBordersAround(field, row, col + j);
                     }
                 }
             }
@@ -101,18 +101,29 @@ namespace ConsoleApp {
             return field;
         }
 
-        private string[,] PutBordersAround(string[,] field, int x, int y) {
-            foreach (var (item1, item2) in _posCheck) {
+        private static string[,] PutBordersAround(string[,] field, int row, int col) {
+            foreach (var (item1, item2) in PosCheck) {
                 try {
-                    if (field[x + item1, y + item2] == null) {
-                        field[x + item1, y + item2] = "border";
+                    if (field[row + item1, col + item2] == null) {
+                        field[row + item1, col + item2] = "border";
                     }
                 }
-                catch (IndexOutOfRangeException e) {
+                catch (IndexOutOfRangeException) {
                 }
             }
 
             return field;
+        }
+
+        public static int CalculateShipsCapacity(int[] shipCount, int[] shipSettings) {
+            int capacity = 0;
+            for (int i = 0; i < shipCount.Length; i++) {
+                for (int j = 0; j < shipCount[i]; j++) {
+                    capacity += shipSettings[i];
+                }
+            }
+
+            return capacity;
         }
     }
 }
