@@ -14,7 +14,7 @@ namespace ConsoleApp {
         private readonly string _battleMessageDamageHit = $"{Color.RedText}ship damaged{Color.Reset}";
         private int _round = 0;
         public string GameMode;
-        private Dictionary<string, int> _playersShipCapacity = new Dictionary<string, int>(2);
+        private readonly Dictionary<string, int> _playersShipCapacity = new Dictionary<string, int>(2);
         public GameEventListener EventListener;
 
         public BattleManager(BoardRenderer renderer, string[,] playerOneField, string[,] playerTwoField, 
@@ -128,6 +128,11 @@ namespace ConsoleApp {
         private void AddToBattleHistory(string playerName, int row, int col, string result) {
             _renderer.BattleHistory.Add(
                 $"{Color.YellowText}Round {_round} - {playerName} hit {_renderer.Alphabet[col]}{row + 1}. Result - {result}{Color.YellowText}!");
+        }
+        
+        public void SaveProgress() {
+            MenuLevelDataContainer.Saves.Add($"{GameMode} - {DateTime.Now}");
+            _renderer.BattleHistory.Add("Game was saved successfully!");
         }
     }
 }

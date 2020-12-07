@@ -22,7 +22,7 @@ namespace ConsoleApp {
                     return submenuList;
 
                 case "Settings":
-                    return new List<string> {"Ship arrangement", "Ship count", "Ship settings", "Battlefield size", 
+                    return new List<string> {"Ship arrangement", "Ship count", "Ship settings", "Battlefield size",
                         "Reset user settings to default", "Back", "Exit"};
 
                 case "Player vs Player": case "Player vs AI": case "AI vs AI":

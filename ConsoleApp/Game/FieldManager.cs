@@ -7,19 +7,19 @@ namespace ConsoleApp {
 
         private static readonly Random Rand = new Random();
 
-        public static string[,] GenerateField(bool contact, int[] shipCount, int[] shipSettings, int[] battlefieldSize) {
+        public static string[,] GenerateField(Settings settings) {
             Random rand = new Random();
-            int height = battlefieldSize[1], weight = battlefieldSize[0];
+            int height = settings.BattlefieldSize[1], weight = settings.BattlefieldSize[0];
             string[,] field = new string[height, weight];
-            for (int i = 0; i < shipCount.Length; i++) {
-                for (int j = 0; j < shipCount[i]; j++) {
+            for (int i = 0; i < settings.ShipCount.Length; i++) {
+                for (int j = 0; j < settings.ShipCount[i]; j++) {
                     bool shipPutted = false;
                     while (!shipPutted) {
                         int h = rand.Next(0, height);
                         int w = rand.Next(0, weight);
-                        List<string> directions = CheckPosition(contact, field, h, w, shipSettings[i]);
+                        List<string> directions = GetAvailableDirections(settings.ShipArrangement, field, h, w, settings.ShipSettings[i]);
                         if (directions.Count == 0) continue;
-                        field = PutShip(contact, field, directions[Rand.Next(0, directions.Count)], h, w, shipSettings[i]);
+                        field = PutShip(settings.ShipArrangement, field, directions[Rand.Next(0, directions.Count)], h, w, settings.ShipSettings[i]);
                         shipPutted = true;
                     }
                 }
@@ -28,7 +28,7 @@ namespace ConsoleApp {
             return field;
         }
 
-        public static List<string> CheckPosition(bool contact, string[,] field, int row, int col, int shipSize) {
+        public static List<string> GetAvailableDirections(bool contact, string[,] field, int row, int col, int shipSize) {
             if (field[row, col] != null && field[row, col] != "st true" && field[row, col] != "st false") return new List<string>();
             List<string> directions = new List<string>();
             if (!contact) {
@@ -48,14 +48,14 @@ namespace ConsoleApp {
             }
             else {
                 for (int a = 0; a < shipSize; a++) {
-                    if (row + a >= field.GetLength(0) || field[row + a, col] != null && field[row + a, col] != "ship template") break;
+                    if (row + a >= field.GetLength(0) || field[row + a, col] != null && field[row + a, col] != "st true") break;
                     if (a == shipSize - 1) {
                         directions.Add("right");
                     }
                 }
 
                 for (int b = 0; b < shipSize; b++) {
-                    if (col + b >= field.GetLength(1) || field[row, col + b] != null && field[row, col + b] != "ship template") break;
+                    if (col + b >= field.GetLength(1) || field[row, col + b] != null && field[row, col + b] != "st true") break;
                     if (b == shipSize - 1) {
                         directions.Add("down");
                     }

@@ -2,8 +2,8 @@
 
 namespace ConsoleApp {
     public class GameEventListener {
-        private BoardRenderer _renderer;
-        private BattleManager _battleManager;
+        private readonly BoardRenderer _renderer;
+        private readonly BattleManager _battleManager;
         
         public GameEventListener(BattleManager manager, BoardRenderer renderer) {
             _renderer = renderer;
@@ -61,7 +61,7 @@ namespace ConsoleApp {
         private void MenuEnterEvent(int selectableFieldRowCount, int row) {
             switch (3 - _renderer.MenuOptions.Count + row - selectableFieldRowCount) {
                 case 0:
-                    SaveProgress();
+                    _battleManager.SaveProgress();
                     break;
 
                 case 1:
@@ -73,11 +73,6 @@ namespace ConsoleApp {
                     Environment.Exit(0);
                     break;
             }
-        }
-
-        private void SaveProgress() {
-            MenuLevelDataContainer.Saves.Add($"{_renderer.GameMode} - {DateTime.Now}");
-            _renderer.BattleHistory.Add("Game was saved successfully!");
         }
     }
 }
