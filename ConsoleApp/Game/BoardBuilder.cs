@@ -5,7 +5,7 @@ namespace ConsoleApp {
     public class BoardBuilder {
 
         private readonly GameManager _manager;
-        private readonly BoardRenderer _renderer;
+        public BoardRenderer Renderer { get; private set; }
         public bool Contact;
         private string[,] _field;
         private int _lastRow = 0, _lastCol = 0, _lastDirection = 0;
@@ -14,14 +14,14 @@ namespace ConsoleApp {
         
         public BoardBuilder(GameManager manager, BoardRenderer renderer, IReadOnlyList<int> battlefieldSize) {
             _manager = manager;
-            _renderer = renderer;
+            Renderer = renderer;
             _field = new string[battlefieldSize[1], battlefieldSize[0]];
         }
 
         public void Start(int[] shipCount, int[] shipSettings) {
             for (int i = 0; i < shipCount.Length; i++) {
                 for (int j = 0; j < shipCount[i]; j++) {
-                    _renderer.RenderBoardBuilder(EventListener, _field, _lastRow, _lastCol, shipSettings[i], 
+                    Renderer.RenderBoardBuilder(EventListener, _field, _lastRow, _lastCol, shipSettings[i], 
                         _lastDirection, Contact);
                 }
             }
@@ -31,7 +31,7 @@ namespace ConsoleApp {
         public void ShipPlacement(string[,] shipField, int row, int col, int cursorLength, 
             int direction, int selectableFieldRowCount = 0) {
             List<string> availableDirections = FieldManager.GetAvailableDirections(Contact, 
-                _renderer.TemporaryField, row, col, cursorLength);
+                Renderer.TemporaryField, row, col, cursorLength);
             string directionString = direction == 0 ? "down" : "right";
             if (availableDirections.Contains(directionString)) {
                 _field = FieldManager.PutShip(Contact, _field, 

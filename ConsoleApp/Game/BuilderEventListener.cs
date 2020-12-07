@@ -2,11 +2,9 @@
 
 namespace ConsoleApp {
     public class BuilderEventListener {
-        private readonly BoardRenderer _renderer;
         private readonly BoardBuilder _boardBuilder;
 
-        public BuilderEventListener(BoardRenderer renderer, BoardBuilder boardBuilder) {
-            _renderer = renderer;
+        public BuilderEventListener(BoardBuilder boardBuilder) {
             _boardBuilder = boardBuilder;
         }
         
@@ -15,35 +13,35 @@ namespace ConsoleApp {
             ConsoleKeyInfo key = Console.ReadKey(true);
             switch (key.Key) {
                 case ConsoleKey.RightArrow when col + 1 < shipField.GetLength(1):
-                    _renderer.RenderBoardBuilder(this, shipField, row, ++col, cursorLength, direction,
-                        _boardBuilder.Contact);
+                    _boardBuilder.Renderer.RenderBoardBuilder(this, shipField, row, ++col, 
+                        cursorLength, direction, _boardBuilder.Contact);
                     break;
 
                 case ConsoleKey.LeftArrow when col - 1 >= 0:
-                    _renderer.RenderBoardBuilder(this, shipField, row, --col, cursorLength, direction,
-                        _boardBuilder.Contact);
+                    _boardBuilder.Renderer.RenderBoardBuilder(this, shipField, row, --col, 
+                        cursorLength, direction, _boardBuilder.Contact);
                     break;
 
                 case ConsoleKey.UpArrow when row - 1 >= 0:
-                    _renderer.RenderBoardBuilder(this, shipField, --row, col, cursorLength, direction,
-                        _boardBuilder.Contact);
+                    _boardBuilder.Renderer.RenderBoardBuilder(this, shipField, --row, col, 
+                        cursorLength, direction, _boardBuilder.Contact);
                     break;
 
-                case ConsoleKey.DownArrow when row + 1 < selectableFieldRowCount + _renderer.MenuOptions.Count:
-                    _renderer.RenderBoardBuilder(this, shipField, ++row, col, cursorLength, direction,
-                        _boardBuilder.Contact);
+                case ConsoleKey.DownArrow when row + 1 < selectableFieldRowCount + _boardBuilder.Renderer.MenuOptions.Count:
+                    _boardBuilder.Renderer.RenderBoardBuilder(this, shipField, ++row, col, 
+                        cursorLength, direction, _boardBuilder.Contact);
                     break;
 
                 case ConsoleKey.Enter when row >= selectableFieldRowCount:
                     MenuEnterEvent(selectableFieldRowCount, row);
-                    _renderer.RenderBoardBuilder(this, shipField, row, col, cursorLength, direction,
-                        _boardBuilder.Contact);
+                    _boardBuilder.Renderer.RenderBoardBuilder(this, shipField, row, col, cursorLength, 
+                        direction, _boardBuilder.Contact);
                     break;
                 
                 case ConsoleKey.R:
                     int newDirection = direction == 0 ? 1 : 0;
-                    _renderer.RenderBoardBuilder(this, shipField, row, col, cursorLength, newDirection,
-                        _boardBuilder.Contact);
+                    _boardBuilder.Renderer.RenderBoardBuilder(this, shipField, row, col, cursorLength, 
+                        newDirection, _boardBuilder.Contact);
                     break;
                 
                 case ConsoleKey.Enter:
@@ -51,8 +49,8 @@ namespace ConsoleApp {
                     break;
                 
                 case ConsoleKey.M:
-                    _renderer.RenderBoardBuilder(this, shipField, selectableFieldRowCount, 0, 
-                        cursorLength, direction, _boardBuilder.Contact);
+                    _boardBuilder.Renderer.RenderBoardBuilder(this, shipField, selectableFieldRowCount, 
+                        0, cursorLength, direction, _boardBuilder.Contact);
                     break;
                 
                 default:

@@ -5,21 +5,23 @@ using System.Threading;
 namespace ConsoleApp {
     public class BattleManager {
         
+        public BoardRenderer Renderer { get; private set; }
+
         private readonly Random _rand = new Random();
-        private readonly BoardRenderer _renderer;
         private string[,] _playerOneField, _playerTwoField;
         private string _nextPlayer;
         private readonly string _playerOneName, _playerTwoName;
         private readonly string _battleMessageMissHit = $"{Color.WhiteText}miss{Color.Reset}";
         private readonly string _battleMessageDamageHit = $"{Color.RedText}ship damaged{Color.Reset}";
+        private readonly string _battleMessageShipDestroyed = $"{Color.RedText}ship destroyed{Color.Reset}";
         private int _round = 0;
         public string GameMode;
         private readonly Dictionary<string, int> _playersShipCapacity = new Dictionary<string, int>(2);
-        public GameEventListener EventListener;
+        public BattleEventListener EventListener;
 
         public BattleManager(BoardRenderer renderer, string[,] playerOneField, string[,] playerTwoField, 
             string playerOneName, string playerTwoName, int shipsCapacity) {
-            _renderer = renderer;
+            Renderer = renderer;
             _playerOneField = playerOneField;
             _playerTwoField = playerTwoField;
             _playerOneName = playerOneName;
@@ -31,7 +33,7 @@ namespace ConsoleApp {
         public void Start() {
             _nextPlayer = _playerOneName;
             if (GameMode != "AI vs AI") {
-                _renderer.RenderBoard(_playerOneField, _playerTwoField, 0, 0, 
+                Renderer.RenderBoard(_playerOneField, _playerTwoField, 0, 0, 
                     _playerOneName, EventListener);   
             }
             else {
@@ -51,14 +53,14 @@ namespace ConsoleApp {
                     string attackingSide = _nextPlayer == _playerOneName ? _playerTwoName : _playerOneName;
                     RegisterHit(attackedField, attackingSide, _nextPlayer, row, col);
                     Thread.Sleep(2000);
-                    _renderer.RenderBoard(attackedField, field, row, col, _nextPlayer, EventListener);
+                    Renderer.RenderBoard(attackedField, field, row, col, _nextPlayer, EventListener);
                     break;
                 
                 default: // game mode is "Player vs AI"
                     RegisterHit(attackedField, _playerOneName, _playerTwoName, row, col);
                     _round++;
                     field = AiMove(field, _playerTwoName, _playerOneName);
-                    _renderer.RenderBoard(field, attackedField, row, col, _playerOneName, EventListener);
+                    Renderer.RenderBoard(field, attackedField, row, col, _playerOneName, EventListener);
                     break;
             }
         }
@@ -79,12 +81,12 @@ namespace ConsoleApp {
             _playersShipCapacity[defendingSide] -= 1;
             if (_playersShipCapacity[defendingSide] != 0) return;
             
-            _renderer.Winner = attackingSide;
-            if (_renderer.MenuOptions.Count == 3) _renderer.MenuOptions.RemoveAt(0);
-            _renderer.BattleHistory.Add(attackingSide == _playerOneName
+            Renderer.Winner = attackingSide;
+            if (Renderer.MenuOptions.Count == 3) Renderer.MenuOptions.RemoveAt(0);
+            Renderer.BattleHistory.Add(attackingSide == _playerOneName
                 ? $"{_playerOneName} destroys the last enemy ship!"
                 : $"{_playerTwoName} destroys the last enemy ship!");
-            _renderer.GameOverScreen(EventListener, _playerOneField, _playerTwoField, 0, 0);
+            Renderer.GameOverScreen(EventListener, _playerOneField, _playerTwoField, 0, 0);
         }
 
         private string[,] AiMove(string[,] field, string attackingSide, string defendingSide) {
@@ -110,7 +112,7 @@ namespace ConsoleApp {
         }
         
         private void RunAiBattle() {
-            int roundsCount = _renderer.FieldSize[0] * _renderer.FieldSize[1] * 2;
+            int roundsCount = Renderer.FieldSize[0] * Renderer.FieldSize[1] * 2;
             for (int rounds = 1; rounds <= roundsCount; rounds++) {
                 if (rounds % 2 != 0) {
                     _playerTwoField = AiMove(_playerTwoField, _playerOneName, _playerOneName);
@@ -120,19 +122,19 @@ namespace ConsoleApp {
                 }
 
                 _round++;
-                _renderer.RenderBoard(_playerOneField, _playerTwoField, 0, 0, "");
+                Renderer.RenderBoard(_playerOneField, _playerTwoField, 0, 0, "");
                 Thread.Sleep(1000);
             }
         }
 
         private void AddToBattleHistory(string playerName, int row, int col, string result) {
-            _renderer.BattleHistory.Add(
-                $"{Color.YellowText}Round {_round} - {playerName} hit {_renderer.Alphabet[col]}{row + 1}. Result - {result}{Color.YellowText}!");
+            Renderer.BattleHistory.Add(
+                $"{Color.YellowText}Round {_round} - {playerName} hit {Renderer.Alphabet[col]}{row + 1}. Result - {result}{Color.YellowText}!");
         }
         
         public void SaveProgress() {
             MenuLevelDataContainer.Saves.Add($"{GameMode} - {DateTime.Now}");
-            _renderer.BattleHistory.Add("Game was saved successfully!");
+            Renderer.BattleHistory.Add("Game was saved successfully!");
         }
     }
 }

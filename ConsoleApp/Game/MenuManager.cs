@@ -6,8 +6,8 @@ namespace ConsoleApp {
 
     public class MenuManager {
         private Settings _defaultSettings, _userSettings;
-        private MenuRenderer _menuRenderer;
-        private MenuEventListener _eventListener;
+        public MenuRenderer MenuRenderer { get; private set; }
+        public MenuEventListener EventListener { get; private set; }
 
         private const string Path = "C:/Users/Mihhail/RiderProjects/icd0008-2020f/ConsoleApp/Game/";
         private string _gameType;
@@ -16,9 +16,9 @@ namespace ConsoleApp {
             LoadSettings();
             MenuLevel currentLevel = new MenuLevel("Main Menu", MenuLevelDataContainer.GetSubmenuList("Main Menu"));
             currentLevel.LevelDescription = MenuLevelDataContainer.GetLevelDescription(currentLevel.LevelTitle);
-            _menuRenderer = new MenuRenderer();
-            _eventListener = new MenuEventListener(this, _menuRenderer);
-            _menuRenderer.RenderMenu(_eventListener, currentLevel, 0);
+            MenuRenderer = new MenuRenderer();
+            EventListener = new MenuEventListener(this);
+            MenuRenderer.RenderMenu(EventListener, currentLevel, 0);
         }
 
         private void LoadSettings() {
@@ -52,7 +52,7 @@ namespace ConsoleApp {
 
                 case "Back":
                     SwitchParametersToPreviousMenu(level);
-                    _menuRenderer.RenderMenu(_eventListener, level, 0);
+                    MenuRenderer.RenderMenu(EventListener, level, 0);
                     break;
 
                 case "Fast Game":
@@ -67,7 +67,7 @@ namespace ConsoleApp {
                     level.LevelTitle = level.SubmenuList[selectedRow];
                     level.SubmenuList = MenuLevelDataContainer.GetSubmenuList(level.LevelTitle);
                     level.LevelDescription = MenuLevelDataContainer.GetLevelDescription(level.LevelTitle);
-                    _menuRenderer.RenderMenu(_eventListener, level, 0);
+                    MenuRenderer.RenderMenu(EventListener, level, 0);
                     break;
 
                 case "Default settings":
@@ -83,7 +83,7 @@ namespace ConsoleApp {
                 case "Reset user settings to default":
                     ResetSettingsToDefault();
                     SwitchParametersToPreviousMenu(level);
-                    _menuRenderer.RenderMenu(_eventListener, level, 0);
+                    MenuRenderer.RenderMenu(EventListener, level, 0);
                     break;
                 
                 case "Ship arrangement": 
@@ -128,27 +128,27 @@ namespace ConsoleApp {
                 level.LevelTitle = level.SubmenuList[selectedRow];
                 level.SubmenuList = MenuLevelDataContainer.GetSubmenuList(level.LevelTitle);
                 level.LevelDescription = MenuLevelDataContainer.GetLevelDescription(level.LevelTitle);
-                _menuRenderer.RenderMenu(_eventListener, level, 0);
+                MenuRenderer.RenderMenu(EventListener, level, 0);
             }
             else {
-                _eventListener.EventListener(level, selectedRow, submenuCount);
+                EventListener.EventListener(level, selectedRow, submenuCount);
             }
         }
         
         private void SetShipArrangement(MenuLevel level, int selectedRow) {
-            _menuRenderer.RenderMenu(_eventListener, level, selectedRow);
+            MenuRenderer.RenderMenu(EventListener, level, selectedRow);
         }
 
         private void SetShipCount(MenuLevel level, int selectedRow) {
-            _menuRenderer.RenderMenu(_eventListener, level, selectedRow);
+            MenuRenderer.RenderMenu(EventListener, level, selectedRow);
         }
 
         private void SetShipSettings(MenuLevel level, int selectedRow) {
-            _menuRenderer.RenderMenu(_eventListener, level, selectedRow);
+            MenuRenderer.RenderMenu(EventListener, level, selectedRow);
         }
 
         private void SetBattlefieldSize(MenuLevel level, int selectedRow) {
-            _menuRenderer.RenderMenu(_eventListener, level, selectedRow);
+            MenuRenderer.RenderMenu(EventListener, level, selectedRow);
         }
     }
 }

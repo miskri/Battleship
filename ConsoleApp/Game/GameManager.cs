@@ -68,7 +68,7 @@ namespace ConsoleApp {
             BoardRenderer boardRenderer = new BoardRenderer("Board Building", settings.BattlefieldSize,
                 playerName) {SelectableFieldRowCount = settings.BattlefieldSize[1]};
             BoardBuilder boardBuilder = new BoardBuilder(this, boardRenderer, settings.BattlefieldSize);
-            BuilderEventListener eventListener = new BuilderEventListener(boardRenderer, boardBuilder);
+            BuilderEventListener eventListener = new BuilderEventListener(boardBuilder);
             boardBuilder.EventListener = eventListener;
             boardBuilder.Contact = settings.ShipArrangement;
             boardBuilder.Start(settings.ShipCount, settings.ShipSettings);
@@ -80,8 +80,8 @@ namespace ConsoleApp {
                 playerOneName, playerTwoName) {SelectableFieldRowCount = settings.BattlefieldSize[1]};
             BattleManager battle = new BattleManager(gameRenderer, _playerOneField,
                 _playerTwoField, playerOneName, playerTwoName, shipsCapacity) {GameMode = gameType};
-            GameEventListener gameEventListener = new GameEventListener(battle, gameRenderer);
-            battle.EventListener = gameEventListener;
+            BattleEventListener battleEventListener = new BattleEventListener(battle);
+            battle.EventListener = battleEventListener;
             battle.Start();
         }
 

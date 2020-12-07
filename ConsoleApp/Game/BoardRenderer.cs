@@ -57,7 +57,7 @@ namespace ConsoleApp {
         }
 
         public void RenderBoard(string[,] playerField, string[,] enemyField, int row, int col, string currentPlayer,
-            GameEventListener eventListener = null) {
+            BattleEventListener eventListener = null) {
             if (Winner != null) GameOverScreen(eventListener, playerField, enemyField, row, col);
             string outputString = "";
             outputString += GetLevelDescription();
@@ -80,7 +80,7 @@ namespace ConsoleApp {
                 SelectableFieldRowCount);
         }
 
-        public void GameOverScreen(GameEventListener eventListener, string[,] playerField, string[,] enemyField, 
+        public void GameOverScreen(BattleEventListener eventListener, string[,] playerField, string[,] enemyField, 
             int row, int col) {
             string outputString = "";
             SelectableFieldRowCount = 0;

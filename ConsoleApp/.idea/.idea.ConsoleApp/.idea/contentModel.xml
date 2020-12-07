@@ -6,6 +6,7 @@
     <e p="C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp" t="IncludeFlat">
       <e p="ConsoleApp.sln" t="IncludeFlat" />
       <e p="Game" t="IncludeRecursive">
+        <e p="BattleEventListener.cs" t="Include" />
         <e p="BattleManager.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="BoardBuilder.cs" t="Include" />
@@ -17,7 +18,6 @@
         <e p="FieldManager.cs" t="Include" />
         <e p="Flotilla.cs" t="Include" />
         <e p="Game.csproj" t="IncludeRecursive" />
-        <e p="GameEventListener.cs" t="Include" />
         <e p="GameManager.cs" t="Include" />
         <e p="MenuEventListener.cs" t="Include" />
         <e p="MenuLevel.cs" t="Include" />
