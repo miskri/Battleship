@@ -11,6 +11,11 @@
         <e p="AppDbContext.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="DAL.csproj" t="IncludeRecursive" />
+        <e p="Migrations" t="Include">
+          <e p="20210108152043_InitialDbMigration.cs" t="Include" />
+          <e p="20210108152043_InitialDbMigration.Designer.cs" t="Include" />
+          <e p="AppDbContextModelSnapshot.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -20,6 +25,7 @@
         </e>
       </e>
       <e p="Database" t="IncludeRecursive">
+        <e p="base.db" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="Database.csproj" t="IncludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
@@ -57,6 +63,9 @@
           <e p="FieldManager.cs" t="Include" />
           <e p="GameManager.cs" t="Include" />
           <e p="MenuManager.cs" t="Include" />
+          <e p="obj" t="Include">
+            <e p="MenuManaer.EntityFrameworkCore.targets" t="Include" />
+          </e>
           <e p="SaveManager.cs" t="Include" />
           <e p="SettingsManager.cs" t="Include" />
           <e p="TimeTravellingManager.cs" t="Include" />
@@ -102,7 +111,8 @@
           <e p="user_settings.json" t="Include" />
         </e>
         <e p="RoundHistory" t="Include">
-          <e p="-759293086.json" t="Include" />
+          <e p="-1588209557.json" t="Include" />
+          <e p="-317126943.json" t="Include" />
         </e>
         <e p="Utils" t="Include">
           <e p="DataUtils.cs" t="Include" />
