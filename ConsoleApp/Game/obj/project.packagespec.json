@@ -14,7 +14,11 @@
     },
     "frameworks": {
       "netcoreapp3.1": {
-        "projectReferences": {}
+        "projectReferences": {
+          "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\DAL\\DAL.csproj": {
+            "projectPath": "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\DAL\\DAL.csproj"
+          }
+        }
       }
     },
     "warningProperties": {
@@ -25,6 +29,20 @@
   },
   "frameworks": {
     "netcoreapp3.1": {
+      "dependencies": {
+        "Microsoft.EntityFrameworkCore": {
+          "target": "Package",
+          "version": "[5.0.1, )"
+        },
+        "Microsoft.EntityFrameworkCore.Design": {
+          "target": "Package",
+          "version": "[5.0.1, )"
+        },
+        "Microsoft.EntityFrameworkCore.Sqlite": {
+          "target": "Package",
+          "version": "[5.0.1, )"
+        }
+      },
       "imports": [
         "net461",
         "net462",

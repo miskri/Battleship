@@ -1,0 +1,114 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\DAL\\DAL.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\DAL\\DAL.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\DAL\\DAL.csproj",
+        "projectName": "DAL",
+        "projectPath": "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\Mihhail\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\DAL\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Mihhail\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {
+              "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Domain\\Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            },
+            "Microsoft.EntityFrameworkCore.Sqlite": {
+              "target": "Package",
+              "version": "[5.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    },
+    "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Domain\\Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Mihhail\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Mihhail\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}
