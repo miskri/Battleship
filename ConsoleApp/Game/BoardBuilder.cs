@@ -1,48 +1,53 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
 namespace ConsoleApp {
     
+    // Class for placing ships on the board
     public class BoardBuilder {
 
         private readonly GameManager _manager;
-        public BoardRenderer Renderer { get; private set; }
-        public bool Contact;
-        private string[,] _field;
         private int _lastRow = 0, _lastCol = 0, _lastDirection = 0;
-
-        public BuilderEventListener EventListener;
         
-        public BoardBuilder(GameManager manager, BoardRenderer renderer, IReadOnlyList<int> battlefieldSize) {
-            _manager = manager;
-            Renderer = renderer;
-            _field = new string[battlefieldSize[1], battlefieldSize[0]];
+        public BoardBuilder(GameManager manager) {
+            _manager = manager; // The game manager who called the ship placement
         }
 
-        public void Start(int[] shipCount, int[] shipSettings) {
-            for (int i = 0; i < shipCount.Length; i++) {
-                for (int j = 0; j < shipCount[i]; j++) {
-                    Renderer.RenderBoardBuilder(EventListener, _field, _lastRow, _lastCol, shipSettings[i], 
-                        _lastDirection, Contact);
+        // Go through all ships from the settings and arrange them
+        public void Start(Settings settings, BuilderProperties props) {
+            props.PlayerFlotilla = new Flotilla();
+            for (int i = 0; i < settings.ShipCount.Length; i++) { // ship count
+                for (int j = 0; j < settings.ShipCount[i]; j++) { // ship size
+                    props.CurrentShipName = props.ShipNames[i]; // ship name
+                    props.CursorLength = settings.ShipSettings[i]; // set ship size
+                    props.Direction = _lastDirection; // set direction
+                    props.Renderer.RenderBoard(props, _lastRow, _lastCol); // render
+                    props.EventListener.EventListener(props, _lastRow, _lastCol);
                 }
             }
-            _manager.SetPlayerField(_field);
+            _manager.SetPlayerField(props.PlayerField); // set field
+            _manager.SetPlayerFlotilla(props.PlayerFlotilla); // set ship
         }
         
-        public void ShipPlacement(string[,] shipField, int row, int col, int cursorLength, 
-            int direction, int selectableFieldRowCount = 0) {
-            List<string> availableDirections = FieldManager.GetAvailableDirections(Contact, 
-                Renderer.TemporaryField, row, col, cursorLength);
-            string directionString = direction == 0 ? "down" : "right";
-            if (availableDirections.Contains(directionString)) {
-                _field = FieldManager.PutShip(Contact, _field, 
-                    directionString, row, col, cursorLength);
-                _lastRow = row;
-                _lastCol = col;
-                _lastDirection = direction;
+        // Does ship been placed or not
+        public bool ShipPlacement(BuilderProperties props, int row, int col) {
+            List<string> availableDirections = FieldManager.GetAvailableDirections(props.ShipArrangement, 
+                props.Renderer.TemporaryField, row, col, props.CursorLength);
+            string directionString = props.Direction == 0 ? "down" : "right";
+            if (!availableDirections.Contains(directionString)) {
+                return false;
             }
-            else {
-                EventListener.EventListener(shipField, row, col, cursorLength, direction, selectableFieldRowCount);
-            }
+
+            Ship ship;
+            // Put ship if you can
+            (props.PlayerField, ship) = FieldManager.PutShip(props.ShipArrangement, props.PlayerField, 
+                directionString, row, col, props.CursorLength);
+            ship.Name = props.CurrentShipName;
+            props.PlayerFlotilla.AddShip(ship);
+            // Remember last coordinates
+            _lastRow = row;
+            _lastCol = col;
+            _lastDirection = props.Direction;
+            return true;
         }
         
     }

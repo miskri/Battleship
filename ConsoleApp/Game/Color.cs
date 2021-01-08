@@ -1,5 +1,6 @@
 ﻿namespace ConsoleApp {
     
+    // Class for changing background or text color, google ANSI-Coloring if interested
     public static class Color {
         
         public static string Reset => "\x1b[0m";

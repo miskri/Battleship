@@ -1,26 +1,36 @@
-﻿namespace ConsoleApp {
+﻿using System;
+
+namespace ConsoleApp {
     
-    public class Ship {
+    [Serializable] public class Ship {
 
-        public bool Destroyed = false;
-        public readonly int Size;
-        public int Health { get; private set; }
-        private int[,] _shipCells;
-
-        public Ship(int size) {
-            Size = size;
+        public string Name { get; set; }
+        public int Size { get; set; }
+        public int Health { get; set; }
+        [NonSerialized] public (int, int)[] ShipCells;
+        public int[] ShipCellsArray { get; set; }
+        
+        public Ship() {}
+        
+        public Ship((int, int)[] shipCells) {
+            Size = shipCells.Length;
             Health = Size;
-            _shipCells = new int[1, Size];
-            for (int i = 0; i < Size; i++) {
-                _shipCells[1, i] = 1;
+            ShipCells = shipCells;
+            ShipCellsArray = new int[Size * 2];
+            for (int i = 0; i < Size * 2; i++) {
+                ShipCellsArray[i] = i % 2 == 0 ? ShipCells[i / 2].Item1 : ShipCells[i / 2].Item2;
             }
         }
 
-        public int SetHit(int row, int col) {
-            Health -= 1;
-            if (Health == 0) Destroyed = true;
-            _shipCells[row, col] = 0;
-            return Health;
+        public int SetHit() {
+            return --Health;
+        }
+        
+        public void LoadShipCellsFromArray() {
+            ShipCells = new (int, int)[ShipCellsArray.Length / 2];
+            for (int i = 0; i < ShipCellsArray.Length; i += 2) {
+                ShipCells[i / 2] = (ShipCellsArray[i], ShipCellsArray[i + 1]);
+            }
         }
     }
 }

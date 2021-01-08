@@ -1,88 +1,116 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace ConsoleApp {
+    
+    // Filling the GameProperties depending on the selected game mode
     public class GameManager {
-        private string[,] _playerOneField;
-        private string[,] _playerTwoField;
+       
+        private GameProperties _props;
 
         public void Start(string gameType, Settings settings) {
+            _props = new GameProperties(gameType);
             switch (gameType) {
                 case "Fast Game":
-                    LoadFastGame(gameType, settings);
+                    LoadFastGame(settings, _props);
                     break;
                 case "Player vs Player":
-                    LoadPlayerVsPlayerGame(gameType, settings);
+                    LoadPlayerVsPlayerGame(settings, _props);
                     break;
                 case "Player vs AI":
-                    LoadPlayerVsAiGame(gameType, settings);
+                    LoadPlayerVsAiGame(settings, _props);
                     break;
                 case "AI vs AI":
-                    LoadAiVsAiGame(gameType, settings);
+                    LoadAiVsAiGame(settings, _props);
                     break;
             }
         }
 
         public void SetPlayerField(string[,] field) {
-            if (_playerOneField == null) _playerOneField = field;
-            else _playerTwoField = field;
-        }
-
-        private void LoadFastGame(string gameType, Settings settings) {
-            _playerOneField = FieldManager.GenerateField(settings);
-            _playerTwoField = FieldManager.GenerateField(settings);
-            StartGame(gameType, settings, "Human", "AI");
-        }
-
-        private void LoadPlayerVsPlayerGame(string gameType, Settings settings) {
-            string playerOneName = AskPlayerName(2, "first player");
-            LoadBoardBuilder(settings, playerOneName);
-            
-            string playerTwoName = AskPlayerName(2, "second player");
-            LoadBoardBuilder(settings, playerTwoName);
-
-            if (playerOneName == playerTwoName) {
-                playerOneName += "1"; 
-                playerTwoName += "2";
+            if (_props.Player1Field == null) {
+                _props.Player1Field = field;
+                _props.FieldSize = new[] {field.GetLength(0), field.GetLength(1)}; // TODO here may cause error with field size
+                _props.LoadPlayer1FieldToArray();
             }
-            StartGame(gameType, settings, playerOneName, playerTwoName);
+            else {
+                _props.Player2Field = field;
+                _props.LoadPlayer2FieldToArray();
+            }
         }
 
-        private void LoadPlayerVsAiGame(string gameType, Settings settings) {
-            string playerName = AskPlayerName();
-            string aiName = AskAiName();
+        public void SetPlayerFlotilla(Flotilla flotilla) {
+            if (_props.Player1Flotilla == null) _props.Player1Flotilla = flotilla;
+            else _props.Player2Flotilla = flotilla;
+        }
+
+        private void LoadFastGame(Settings settings, GameProperties props) {
+            props.Player1Name = "Human";
+            props.Player2Name = "AI";
             
-            LoadBoardBuilder(settings, playerName);
-            _playerTwoField = FieldManager.GenerateField(settings);
+            (_props.Player1Field, _props.Player1Flotilla) = FieldManager.GenerateField(settings);
+            (_props.Player2Field, _props.Player2Flotilla) = FieldManager.GenerateField(settings);
             
-            StartGame(gameType, settings, playerName, aiName);
+            _props.FieldSize = new[] {settings.BattlefieldSize[0], settings.BattlefieldSize[1]};
+            StartGame(props);
         }
 
-        private void LoadAiVsAiGame(string gameType, Settings settings) {
-            _playerOneField = FieldManager.GenerateField(settings);
-            _playerTwoField = FieldManager.GenerateField(settings);
+        private void LoadPlayerVsPlayerGame(Settings settings, GameProperties props) {
+            props.Player1Name = AskPlayerName(2, "first player");
+            LoadBoardBuilder(settings, props, props.Player1Name);
             
-            StartGame(gameType, settings,"Beavis", "Butthead");
+            props.Player2Name = AskPlayerName(2, "second player");
+            LoadBoardBuilder(settings, props, props.Player2Name);
+
+            if (props.Player1Name == props.Player2Name) {
+                props.Player1Name += "1"; 
+                props.Player2Name += "2";
+            }
+            StartGame(props);
         }
 
-        private void LoadBoardBuilder(Settings settings, string playerName) {
-            BoardRenderer boardRenderer = new BoardRenderer("Board Building", settings.BattlefieldSize,
-                playerName) {SelectableFieldRowCount = settings.BattlefieldSize[1]};
-            BoardBuilder boardBuilder = new BoardBuilder(this, boardRenderer, settings.BattlefieldSize);
-            BuilderEventListener eventListener = new BuilderEventListener(boardBuilder);
-            boardBuilder.EventListener = eventListener;
-            boardBuilder.Contact = settings.ShipArrangement;
-            boardBuilder.Start(settings.ShipCount, settings.ShipSettings);
+        private void LoadPlayerVsAiGame(Settings settings, GameProperties props) {
+            props.Player1Name = AskPlayerName();
+            props.Player2Name = AskAiName();
+            
+            LoadBoardBuilder(settings, props, props.Player1Name);
+            (_props.Player2Field, _props.Player2Flotilla) = FieldManager.GenerateField(settings);
+            
+            StartGame(props);
         }
 
-        private void StartGame(string gameType, Settings settings, string playerOneName, string playerTwoName) {
-            int shipsCapacity = FieldManager.CalculateShipsCapacity(settings.ShipCount, settings.ShipSettings);
-            BoardRenderer gameRenderer = new BoardRenderer(gameType, settings.BattlefieldSize,
-                playerOneName, playerTwoName) {SelectableFieldRowCount = settings.BattlefieldSize[1]};
-            BattleManager battle = new BattleManager(gameRenderer, _playerOneField,
-                _playerTwoField, playerOneName, playerTwoName, shipsCapacity) {GameMode = gameType};
-            BattleEventListener battleEventListener = new BattleEventListener(battle);
-            battle.EventListener = battleEventListener;
-            battle.Start();
+        private void LoadAiVsAiGame(Settings settings, GameProperties props) {
+            props.Player1Name = "Beavis";
+            props.Player2Name = "Butthead";
+            
+            (_props.Player1Field, _props.Player1Flotilla) = FieldManager.GenerateField(settings);
+            (_props.Player2Field, _props.Player2Flotilla) = FieldManager.GenerateField(settings);
+            
+            _props.FieldSize = new[] {settings.BattlefieldSize[0], settings.BattlefieldSize[1]};
+            StartGame(props);
+        }
+
+        private void LoadBoardBuilder(Settings settings, GameProperties gameProps, string playerName) { 
+            BuilderProperties builderProps = new BuilderProperties {
+                Mode = "Board Building",
+                PlayerFlotilla = playerName == gameProps.Player1Name ? gameProps.Player1Flotilla : gameProps.Player2Flotilla,
+                PlayerField = new string[settings.BattlefieldSize[0], settings.BattlefieldSize[1]],
+                ShipNames = settings.ShipNames,
+                MenuOptions = new List<string>{"Main Menu", "Quit"},
+                PlayerName = playerName,
+                ShipArrangement = settings.ShipArrangement,
+                SelectableRowCount = settings.BattlefieldSize[0],
+                Builder = new BoardBuilder(this),
+                Renderer = new BuilderRenderer(settings.BattlefieldSize[1]),
+                EventListener = new BuilderEventListener()
+            };
+            builderProps.Builder.Start(settings, builderProps);
+        }
+
+        private void StartGame(GameProperties props) {
+            props.Manager = new BattleManager();
+            props.Renderer = new BoardRenderer(props.FieldSize[1]);
+            props.EventListener = new BattleEventListener();
+            props.Manager.StartBattle(props);
         }
 
         private string AskPlayerName(int playersCount = 1, string currentPlayerNumber = "") {
@@ -92,7 +120,7 @@ namespace ConsoleApp {
             else Console.Write(Color.YellowText + $"Please enter {currentPlayerNumber} name: " + Color.Reset);
             string playerName = Console.ReadLine();
             if (playerName == null || playerName.Length <= 1) playerName = "Human";
-            else if (playerName.Length >= 25) playerName = "Mr. Long Name";
+            else if (playerName.Length >= 15) playerName = "Mr. Long Name";
             Console.CursorVisible = false;
             return playerName;
         }

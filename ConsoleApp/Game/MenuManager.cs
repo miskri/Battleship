@@ -1,109 +1,94 @@
-﻿using System;
-using System.IO;
-using System.Text.Json;
+using System;
+using System.Linq;
 
 namespace ConsoleApp {
 
     public class MenuManager {
-        private Settings _defaultSettings, _userSettings;
-        public MenuRenderer MenuRenderer { get; private set; }
-        public MenuEventListener EventListener { get; private set; }
-
-        private const string Path = "C:/Users/Mihhail/RiderProjects/icd0008-2020f/ConsoleApp/Game/";
-        private string _gameType;
+        
+        private MenuProperties _props;
 
         public void Start() {
-            LoadSettings();
-            MenuLevel currentLevel = new MenuLevel("Main Menu", MenuLevelDataContainer.GetSubmenuList("Main Menu"));
-            currentLevel.LevelDescription = MenuLevelDataContainer.GetLevelDescription(currentLevel.LevelTitle);
-            MenuRenderer = new MenuRenderer();
-            EventListener = new MenuEventListener(this);
-            MenuRenderer.RenderMenu(EventListener, currentLevel, 0);
+            _props = new MenuProperties {Manager = this, SettingsManager = new SettingsManager()};
+            _props.SettingsManager.LoadSettings();
+            MenuDataContainer.UserSettings = _props.SettingsManager.UserSettings;
+            _props.Level = new MenuLevel("Main Menu", MenuDataContainer.GetSubmenuList("Main Menu"));
+            _props.Level.LevelDescription = MenuDataContainer.GetLevelDescription(_props.Level.LevelTitle);
+            _props.Renderer = new MenuRenderer {PreviousFrame = "Empty frame"};
+            _props.EventListener = new MenuEventListener();
+            _props.SettingsEventListener = new SettingsEventListener();
+            _props.SelectedRow = 0;
+            _props.Renderer.RenderMenu(_props);
+            _props.EventListener.EventListener(_props);
         }
 
-        private void LoadSettings() {
-            string pathDefaultSettings = $"{Path}default_settings.json"; 
-            StreamReader fileDefaultSettings = new StreamReader(pathDefaultSettings);
-            string jsonString = fileDefaultSettings.ReadToEnd();
-            _defaultSettings = JsonSerializer.Deserialize<Settings>(jsonString);
-            fileDefaultSettings.Close();
-            
-            string pathUserSettings = $"{Path}user_settings.json"; 
-            StreamReader fileUserSettings = new StreamReader(pathUserSettings);
-            jsonString = fileUserSettings.ReadToEnd();
-            _userSettings = JsonSerializer.Deserialize<Settings>(jsonString);
-            fileUserSettings.Close();
-        }
-
-        private void ResetSettingsToDefault() {
-            string path = $"{Path}user_settings.json";
-            StreamWriter fileUserSettings = new StreamWriter(path);
-            string jsonString = JsonSerializer.Serialize(_defaultSettings);
-            fileUserSettings.Write(jsonString);
-            fileUserSettings.Close();
-        }
-        
-        public void EventEnter(MenuLevel level, int selectedRow, int submenuCount) {
-            switch (level.SubmenuList[selectedRow]) {
+        public void EventEnter(MenuProperties props) {
+            string selectedMenu = props.Level.SubmenuList[props.SelectedRow];
+            switch (selectedMenu) {
                 case "Exit":
                     Console.Clear();
                     Environment.Exit(0);
                     break;
 
                 case "Back":
-                    SwitchParametersToPreviousMenu(level);
-                    MenuRenderer.RenderMenu(EventListener, level, 0);
+                    GetBack(props);
                     break;
 
                 case "Fast Game":
-                    _gameType = "Fast Game";
+                    props.GameMode = "Fast Game";
                     GameManager fastGame = new GameManager();
-                    fastGame.Start(_gameType, _defaultSettings);
+                    fastGame.Start(props.GameMode, props.SettingsManager.DefaultSettings);
                     break;
 
                 case "Player vs Player": case "Player vs AI": case "AI vs AI":
-                    _gameType = level.SubmenuList[selectedRow];
-                    level.PreviousMenu.Add(level.LevelTitle);
-                    level.LevelTitle = level.SubmenuList[selectedRow];
-                    level.SubmenuList = MenuLevelDataContainer.GetSubmenuList(level.LevelTitle);
-                    level.LevelDescription = MenuLevelDataContainer.GetLevelDescription(level.LevelTitle);
-                    MenuRenderer.RenderMenu(EventListener, level, 0);
+                    GameModeSettings(props);
                     break;
 
                 case "Default settings":
                     GameManager defaultGame = new GameManager();
-                    defaultGame.Start(_gameType, _defaultSettings);
+                    defaultGame.Start(props.GameMode, props.SettingsManager.DefaultSettings);
                     break;
 
                 case "User settings":
                     GameManager userGame = new GameManager();
-                    userGame.Start(_gameType, _userSettings);
+                    userGame.Start(props.GameMode, props.SettingsManager.UserSettings);
+                    break;
+                
+                case "Load":
+                    LoadSavedGame(props.Level.LevelTitle);
+                    break;
+                
+                case "Delete":
+                    Save saveForDelete = SaveManager.GetSaveReference(props.Level.LevelTitle);
+                    SaveManager.DeleteSavedGame(saveForDelete);
+                    GetBack(props);
                     break;
                 
                 case "Reset user settings to default":
-                    ResetSettingsToDefault();
-                    SwitchParametersToPreviousMenu(level);
-                    MenuRenderer.RenderMenu(EventListener, level, 0);
+                    props.SettingsManager.ResetSettingsToDefault();
+                   GetBack(props);
                     break;
                 
                 case "Ship arrangement": 
-                    SetShipArrangement(level, selectedRow);
-                    break;
-
-                case "Ship count": 
-                    SetShipCount(level, selectedRow);
-                    break;
-
-                case "Ship settings": 
-                    SetShipSettings(level, selectedRow);
+                    props.SettingsManager.SetShipArrangement(props);
                     break;
 
                 case "Battlefield size":
-                    SetBattlefieldSize(level, selectedRow);
+                    props.SettingsManager.SetBattlefieldSize(props);
+                    break;
+                
+                case "Add custom ship":
+                    props.SettingsManager.AddCustomShip(props);
+                    break;
+                
+                case "Carrier": case "Battleship": case "Submarine": case "Cruiser": case "Patrol":
+                    props.SettingsManager.SetShipSettings(props, selectedMenu);
                     break;
 
                 default: {
-                    DefaultStatement(level, selectedRow, submenuCount);
+                    if (props.SettingsManager.UserSettings.ShipNames.Contains(selectedMenu)) {
+                        props.SettingsManager.SetShipSettings(props, selectedMenu);
+                    }
+                    DefaultStatement(props);
                     break;
                 }
             }
@@ -112,43 +97,49 @@ namespace ConsoleApp {
         public void SwitchParametersToPreviousMenu(MenuLevel level) {
             level.LevelTitle = level.PreviousMenu[^1];
             level.RemoveLastPreviousMenu();
-            level.SubmenuList = MenuLevelDataContainer.GetSubmenuList(level.LevelTitle);
-            level.LevelDescription = MenuLevelDataContainer.GetLevelDescription(level.LevelTitle);
+            level.SubmenuList = MenuDataContainer.GetSubmenuList(level.LevelTitle);
+            level.LevelDescription = MenuDataContainer.GetLevelDescription(level.LevelTitle);
         }
 
-        private void DefaultStatement(MenuLevel level, int selectedRow, int submenuCount) {
-            if (MenuLevelDataContainer.GetSubmenuList(level.SubmenuList[selectedRow]) != null) {
-                if (level.SubmenuList[selectedRow] == "Main Menu") {
-                    level.ClearPreviousMenu();
-                }
-                else {
-                    level.PreviousMenu.Add(level.LevelTitle);
-                }
+        private void GetBack(MenuProperties props) {
+            SwitchParametersToPreviousMenu(props.Level);
+            props.SelectedRow = 0;
+            props.Renderer.RenderMenu(props);
+        }
 
-                level.LevelTitle = level.SubmenuList[selectedRow];
-                level.SubmenuList = MenuLevelDataContainer.GetSubmenuList(level.LevelTitle);
-                level.LevelDescription = MenuLevelDataContainer.GetLevelDescription(level.LevelTitle);
-                MenuRenderer.RenderMenu(EventListener, level, 0);
+        private void DefaultStatement(MenuProperties props) {
+            if (MenuDataContainer.GetSubmenuList(props.Level.SubmenuList[props.SelectedRow]) == null) {
+                return;
+            }
+
+            if (props.Level.SubmenuList[props.SelectedRow] == "Main Menu") {
+                props.Level.ClearPreviousMenu();
             }
             else {
-                EventListener.EventListener(level, selectedRow, submenuCount);
+                props.Level.PreviousMenu.Add(props.Level.LevelTitle);
             }
-        }
-        
-        private void SetShipArrangement(MenuLevel level, int selectedRow) {
-            MenuRenderer.RenderMenu(EventListener, level, selectedRow);
-        }
-
-        private void SetShipCount(MenuLevel level, int selectedRow) {
-            MenuRenderer.RenderMenu(EventListener, level, selectedRow);
+            
+            props.Level.LevelTitle = props.Level.SubmenuList[props.SelectedRow];
+            props.Level.SubmenuList = MenuDataContainer.GetSubmenuList(props.Level.LevelTitle);
+            props.Level.LevelDescription = MenuDataContainer.GetLevelDescription(props.Level.LevelTitle);
+            props.SelectedRow = 0;
+            props.Renderer.RenderMenu(props);
         }
 
-        private void SetShipSettings(MenuLevel level, int selectedRow) {
-            MenuRenderer.RenderMenu(EventListener, level, selectedRow);
+        private void GameModeSettings(MenuProperties props) {
+            props.GameMode = props.Level.SubmenuList[props.SelectedRow];
+            props.Level.PreviousMenu.Add(props.Level.LevelTitle);
+            props.Level.LevelTitle = props.Level.SubmenuList[props.SelectedRow];
+            props.Level.SubmenuList = MenuDataContainer.GetSubmenuList(props.Level.LevelTitle);
+            props.Level.LevelDescription = MenuDataContainer.GetLevelDescription(props.Level.LevelTitle);
+            props.SelectedRow = 0;
+            props.Renderer.RenderMenu(props);
         }
 
-        private void SetBattlefieldSize(MenuLevel level, int selectedRow) {
-            MenuRenderer.RenderMenu(EventListener, level, selectedRow);
+        private void LoadSavedGame(string saveName) {
+            Save selectedSave = SaveManager.GetSave(saveName);
+            selectedSave.Properties.Manager = new BattleManager();
+            selectedSave.Properties.Manager.LoadBattle(selectedSave.Properties);
         }
     }
 }

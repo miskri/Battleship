@@ -2,30 +2,36 @@
 using System.Collections.Generic;
 
 namespace ConsoleApp {
+    
+    // DO NOT TOUCH IT, JUST USE IF SUDDENLY NEEDED. I haven't rewritten anything since I wrote this, sorry.
     public static class FieldManager {
+        
         private static readonly (int, int)[] PosCheck = {(1, 0), (1, -1), (1, 1), (0, 1), (0, -1), (-1, 0), (-1, 1), (-1, -1)};
 
         private static readonly Random Rand = new Random();
 
-        public static string[,] GenerateField(Settings settings) {
+        public static (string[,], Flotilla) GenerateField(Settings settings) {
             Random rand = new Random();
-            int height = settings.BattlefieldSize[1], weight = settings.BattlefieldSize[0];
+            int height = settings.BattlefieldSize[0], weight = settings.BattlefieldSize[1];
             string[,] field = new string[height, weight];
+            Flotilla flotilla = new Flotilla();
             for (int i = 0; i < settings.ShipCount.Length; i++) {
                 for (int j = 0; j < settings.ShipCount[i]; j++) {
-                    bool shipPutted = false;
-                    while (!shipPutted) {
+                    while (true) {
                         int h = rand.Next(0, height);
                         int w = rand.Next(0, weight);
                         List<string> directions = GetAvailableDirections(settings.ShipArrangement, field, h, w, settings.ShipSettings[i]);
                         if (directions.Count == 0) continue;
-                        field = PutShip(settings.ShipArrangement, field, directions[Rand.Next(0, directions.Count)], h, w, settings.ShipSettings[i]);
-                        shipPutted = true;
+                        Ship ship;
+                        (field, ship) = PutShip(settings.ShipArrangement, field, directions[Rand.Next(0, directions.Count)], h, w, settings.ShipSettings[i]);
+                        ship.Name = settings.ShipNames[i];
+                        flotilla.AddShip(ship);
+                        break;
                     }
                 }
             }
 
-            return field;
+            return (field, flotilla);
         }
 
         public static List<string> GetAvailableDirections(bool contact, string[,] field, int row, int col, int shipSize) {
@@ -80,10 +86,12 @@ namespace ConsoleApp {
             return true;
         }
 
-        public static string[,] PutShip(bool contact, string[,] field, string direction, int row, int col, int shipSize ) {
+        public static (string[,], Ship) PutShip(bool contact, string[,] field, string direction, int row, int col, int shipSize) {
+            (int, int)[] cells = new (int, int)[shipSize];
             if (direction == "right") {
                 for (int i = 0; i < shipSize; i++) {
                     field[row + i, col] = "ship";
+                    cells[i] = (row + i, col);
                     if (!contact) {
                         field = PutBordersAround(field, row + i, col);
                     }
@@ -92,13 +100,14 @@ namespace ConsoleApp {
             else {
                 for (int j = 0; j < shipSize; j++) {
                     field[row, col + j] = "ship";
+                    cells[j] = (row, col + j);
                     if (!contact) {
                         field = PutBordersAround(field, row, col + j);
                     }
                 }
             }
-
-            return field;
+            Ship ship = new Ship(cells);
+            return (field, ship);
         }
 
         private static string[,] PutBordersAround(string[,] field, int row, int col) {
@@ -113,17 +122,6 @@ namespace ConsoleApp {
             }
 
             return field;
-        }
-
-        public static int CalculateShipsCapacity(int[] shipCount, int[] shipSettings) {
-            int capacity = 0;
-            for (int i = 0; i < shipCount.Length; i++) {
-                for (int j = 0; j < shipCount[i]; j++) {
-                    capacity += shipSettings[i];
-                }
-            }
-
-            return capacity;
         }
     }
 }

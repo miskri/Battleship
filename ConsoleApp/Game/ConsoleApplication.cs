@@ -1,13 +1,17 @@
-﻿using System;
+using System;
+using System.Runtime.InteropServices;
 
 namespace ConsoleApp
 {
     public static class ConsoleApplication
     {
         private static void Main(string[] args) {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.OutputEncoding = System.Text.Encoding.UTF8; // required for correct display of ♦ symbol
             Console.CursorVisible = false;
-            Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows)) // Unix can't resize window
+            {
+                Console.SetWindowSize(Console.LargestWindowWidth, Console.LargestWindowHeight);
+            }
             MenuManager menuManager = new MenuManager();
             menuManager.Start();
         }

@@ -2,5 +2,6 @@
   "ShipArrangement": false, 
   "ShipCount": [1, 1, 1, 1, 1],
   "ShipSettings": [5, 4, 3, 2, 1],
-  "BattlefieldSize": [10, 10]
+  "BattlefieldSize": [10, 10],
+  "ShipNames": ["Carrier", "Battleship", "Submarine", "Cruiser", "Patrol"]
 }
