@@ -2,9 +2,11 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.Json;
+using ConsoleApp.Data;
 using ConsoleApp.Objects;
 using ConsoleApp.Utils;
 using DAL;
+using Domain.Objects;
 
 namespace ConsoleApp.Control {
     
@@ -22,7 +24,9 @@ namespace ConsoleApp.Control {
 
         public static Save GetSave(string saveName) {
             if (Saves == null) LoadSaves();
-            return Saves?.FirstOrDefault(save => save.SaveName == saveName).DeepClone(); // Data.DeepClone(obj)
+            Save dbSave = LoadFromDb(saveName);
+            return dbSave; // TODO
+            //return dbSave ?? Saves?.FirstOrDefault(save => save.SaveName == saveName).DeepClone();
         }
 
         public static Save GetSaveReference(string saveName) {
@@ -41,6 +45,7 @@ namespace ConsoleApp.Control {
             if (Saves == null) LoadSaves();
             Saves?.Remove(save);
             SaveChanges();
+            DeleteFromDb(save.SaveName);
         }
         
         public static void LoadSaves() {
@@ -68,6 +73,176 @@ namespace ConsoleApp.Control {
 
         private static void SaveToDb(Save save) {
             using AppDbContext ctx = new AppDbContext();
+
+            GameProperties props = save.Properties;
+            
+            Flotilla flotilla1 = props.Player1Flotilla;
+            var flotillaInDb1 = new BattleFlotillasObject {
+                Size = flotilla1.Size,
+                FlotillaHealth = flotilla1.FlotillaHealth
+            };
+            Flotilla flotilla2 = save.Properties.Player2Flotilla;
+            var flotillaInDb2 = new BattleFlotillasObject {
+                Size = flotilla2.Size,
+                FlotillaHealth = flotilla2.FlotillaHealth
+            };
+
+            ctx.Add(flotillaInDb1);
+            ctx.Add(flotillaInDb2);
+            ctx.SaveChanges();
+
+            foreach (Ship ship in flotilla1.Ships) {
+                var ShipInDb = new BattleShipsObject {
+                    FlotillaId = flotillaInDb1.BattleFlotillasObjectId,
+                    Name = ship.Name,
+                    Size = ship.Size,
+                    Health = ship.Health,
+                    ShipCellsArray = JsonSerializer.Serialize(ship.ShipCellsArray),
+                };
+                ctx.Add(ShipInDb);
+            }
+            
+            foreach (Ship ship in flotilla2.Ships) {
+                var ShipInDb = new BattleShipsObject {
+                    FlotillaId = flotillaInDb2.BattleFlotillasObjectId,
+                    Name = ship.Name,
+                    Size = ship.Size,
+                    Health = ship.Health,
+                    ShipCellsArray = JsonSerializer.Serialize(ship.ShipCellsArray),
+                };
+                ctx.Add(ShipInDb);
+            }
+            ctx.SaveChanges();
+            
+            var propertiesInDb = new BattlePropertiesObject {
+                GameMode = props.GameMode,
+                GameId = props.Id,
+                Player1Name = props.Player1Name,
+                Player2Name = props.Player2Name,
+                FieldSize =  JsonSerializer.Serialize(props.FieldSize),
+                Player1FieldArray = JsonSerializer.Serialize(props.Player1FieldArray),
+                Player2FieldArray = JsonSerializer.Serialize(props.Player2FieldArray),
+                CurrentPlayer = props.CurrentPlayer,
+                Round = props.Round,
+                SelectableRowCount = props.SelectableRowCount,
+                BattleHistory = JsonSerializer.Serialize(props.BattleHistory),
+                MenuOptions = JsonSerializer.Serialize(props.MenuOptions)
+            };
+
+            ctx.Add(propertiesInDb);
+            ctx.SaveChanges();
+            
+            var propertiesFlotillasInDb1 = new PropertiesFlotillasObject {
+                BattleId = propertiesInDb.BattlePropertiesObjectId,
+                FlotillaId = flotillaInDb1.BattleFlotillasObjectId
+            };
+            ctx.Add(propertiesFlotillasInDb1);
+            
+            var propertiesFlotillasInDb2 = new PropertiesFlotillasObject {
+                BattleId = propertiesInDb.BattlePropertiesObjectId,
+                FlotillaId = flotillaInDb2.BattleFlotillasObjectId
+            };
+            ctx.Add(propertiesFlotillasInDb2);
+            ctx.SaveChanges();
+
+            var SaveInDb = new SaveObject {
+                SaveName = save.SaveName,
+                BattlePropertiesObjectId = propertiesInDb.BattlePropertiesObjectId
+            };
+
+            ctx.Add(SaveInDb);
+            ctx.SaveChanges();
+
+            // TODO refactor
+        }
+
+        private static Save LoadFromDb(string saveName) {
+            using AppDbContext ctx = new AppDbContext();
+
+            SaveObject save = ctx.Saves.FirstOrDefault(x => x.SaveName == saveName);
+            if (save == null) return null;
+            
+            var props = ctx.Properties.First(x => x.BattlePropertiesObjectId == save.BattlePropertiesObjectId);
+            var test = ctx.PropertiesFlotillas.Where(x => x.BattleId == props.BattlePropertiesObjectId).ToList();
+            var flotilla1 = ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[0].FlotillaId);
+            var flotilla2 = ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[1].FlotillaId);
+            var ships1 = ctx.Ships.Where(x => x.BattleShipsObjectId == flotilla1.BattleFlotillasObjectId).ToList();
+            var ships2 = ctx.Ships.Where(x => x.BattleShipsObjectId == flotilla2.BattleFlotillasObjectId).ToList();
+
+            Flotilla player1Flotilla = new Flotilla {
+                Destroyed = false, 
+                FlotillaHealth = flotilla1.FlotillaHealth, 
+                Ships = new List<Ship>(), 
+                Size = flotilla1.Size
+            };
+            
+            Flotilla player2Flotilla = new Flotilla {
+                Destroyed = false, 
+                FlotillaHealth = flotilla2.FlotillaHealth, 
+                Ships = new List<Ship>(), 
+                Size = flotilla2.Size
+            };
+
+            foreach (var ship in ships1) {
+                player1Flotilla.Ships.Add(new Ship {
+                    Health = ship.Health,
+                    Name = ship.Name,
+                    ShipCellsArray = JsonSerializer.Deserialize<int[]>(ship.ShipCellsArray),
+                    Size = ship.Size
+                });
+            }
+            
+            foreach (var ship in ships2) {
+                player2Flotilla.Ships.Add(new Ship {
+                    Health = ship.Health,
+                    Name = ship.Name,
+                    ShipCellsArray = JsonSerializer.Deserialize<int[]>(ship.ShipCellsArray),
+                    Size = ship.Size
+                });
+            }
+
+            GameProperties properties = new GameProperties {
+                Id = props.GameId,
+                GameMode = props.GameMode,
+                Player1Name = props.Player1Name,
+                Player2Name = props.Player2Name,
+                Player1Flotilla = player1Flotilla,
+                Player2Flotilla = player2Flotilla,
+                FieldSize = JsonSerializer.Deserialize<int[]>(props.FieldSize),
+                Player1FieldArray = JsonSerializer.Deserialize<string[]>(props.Player1FieldArray),
+                Player2FieldArray = JsonSerializer.Deserialize<string[]>(props.Player2FieldArray),
+                CurrentPlayer = props.CurrentPlayer,
+                Round = props.Round,
+                SelectableRowCount = props.SelectableRowCount,
+                BattleHistory = JsonSerializer.Deserialize<List<string>>(props.BattleHistory),
+                MenuOptions = JsonSerializer.Deserialize<List<string>>(props.MenuOptions)
+            };
+            
+            Save saveFromDb = new Save(save.SaveName, properties);
+            return saveFromDb;
+        }
+
+        private static void DeleteFromDb(string saveName) {
+            using AppDbContext ctx = new AppDbContext();
+
+            SaveObject save = ctx.Saves.FirstOrDefault(x => x.SaveName == saveName);
+            if (save == null) return;
+            
+            var props = ctx.Properties.First(x => x.BattlePropertiesObjectId == save.BattlePropertiesObjectId);
+            var test = ctx.PropertiesFlotillas.Where(x => x.BattleId == props.BattlePropertiesObjectId).ToList();
+            var flotilla1 = ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[0].FlotillaId);
+            var flotilla2 = ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[1].FlotillaId);
+            var ships1 = ctx.Ships.Where(x => x.BattleShipsObjectId == flotilla1.BattleFlotillasObjectId).ToList();
+            var ships2 = ctx.Ships.Where(x => x.BattleShipsObjectId == flotilla2.BattleFlotillasObjectId).ToList();
+            
+            ctx.Ships.RemoveRange(ships1);
+            ctx.Ships.RemoveRange(ships2);
+            ctx.Flotillas.Remove(flotilla1);
+            ctx.Flotillas.Remove(flotilla2);
+            ctx.PropertiesFlotillas.RemoveRange(test);
+            ctx.Properties.Remove(props);
+            ctx.Saves.Remove(save);
+            ctx.SaveChanges();
         }
     }
 }

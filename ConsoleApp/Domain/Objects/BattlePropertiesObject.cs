@@ -4,7 +4,8 @@ namespace Domain.Objects {
     
     public class BattlePropertiesObject {
         
-        public string BattlePropertiesObjectId { get; set; }
+        public int BattlePropertiesObjectId { get; set; }
+        public string GameId { get; set; }
         public string GameMode { get; set; }
         public string Player1Name { get; set; }
         public string Player2Name { get; set; }
