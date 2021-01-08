@@ -1,0 +1,9 @@
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Menu\bin\Debug\netstandard2.1\Menu.deps.json
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Menu\bin\Debug\netstandard2.1\Menu.dll
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Menu\bin\Debug\netstandard2.1\Menu.pdb
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Menu\obj\Debug\netstandard2.1\Menu.csprojAssemblyReference.cache
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Menu\obj\Debug\netstandard2.1\Menu.AssemblyInfoInputs.cache
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Menu\obj\Debug\netstandard2.1\Menu.AssemblyInfo.cs
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Menu\obj\Debug\netstandard2.1\Menu.csproj.CoreCompileInputs.cache
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Menu\obj\Debug\netstandard2.1\Menu.dll
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Menu\obj\Debug\netstandard2.1\Menu.pdb

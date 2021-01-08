@@ -1,0 +1,52 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Menu\\Menu.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Menu\\Menu.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Menu\\Menu.csproj",
+        "projectName": "Menu",
+        "projectPath": "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Menu\\Menu.csproj",
+        "packagesPath": "C:\\Users\\Mihhail\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Menu\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\Mihhail\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "netstandard2.1"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netstandard2.1": {
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netstandard2.1": {
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true
+        }
+      }
+    }
+  }
+}

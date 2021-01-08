@@ -1,0 +1,13 @@
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\bin\Debug\netcoreapp3.1\Game.exe
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\bin\Debug\netcoreapp3.1\Game.deps.json
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\bin\Debug\netcoreapp3.1\Game.runtimeconfig.json
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\bin\Debug\netcoreapp3.1\Game.runtimeconfig.dev.json
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\bin\Debug\netcoreapp3.1\Game.dll
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\bin\Debug\netcoreapp3.1\Game.pdb
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\obj\Debug\netcoreapp3.1\Game.csprojAssemblyReference.cache
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\obj\Debug\netcoreapp3.1\Game.AssemblyInfoInputs.cache
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\obj\Debug\netcoreapp3.1\Game.AssemblyInfo.cs
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\obj\Debug\netcoreapp3.1\Game.csproj.CoreCompileInputs.cache
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\obj\Debug\netcoreapp3.1\Game.dll
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\obj\Debug\netcoreapp3.1\Game.pdb
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\Game\obj\Debug\netcoreapp3.1\Game.genruntimeconfig.cache

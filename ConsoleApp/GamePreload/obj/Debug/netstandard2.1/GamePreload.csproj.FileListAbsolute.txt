@@ -1,0 +1,9 @@
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\GamePreload\bin\Debug\netstandard2.1\GamePreload.deps.json
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\GamePreload\bin\Debug\netstandard2.1\GamePreload.dll
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\GamePreload\bin\Debug\netstandard2.1\GamePreload.pdb
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\GamePreload\obj\Debug\netstandard2.1\GamePreload.csprojAssemblyReference.cache
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\GamePreload\obj\Debug\netstandard2.1\GamePreload.AssemblyInfoInputs.cache
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\GamePreload\obj\Debug\netstandard2.1\GamePreload.AssemblyInfo.cs
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\GamePreload\obj\Debug\netstandard2.1\GamePreload.csproj.CoreCompileInputs.cache
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\GamePreload\obj\Debug\netstandard2.1\GamePreload.dll
+C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp\GamePreload\obj\Debug\netstandard2.1\GamePreload.pdb
