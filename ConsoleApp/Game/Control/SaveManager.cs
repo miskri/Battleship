@@ -13,6 +13,7 @@ namespace ConsoleApp.Control {
     public static class SaveManager {
 
         public static List<Save> Saves;
+        private static string _savePath = "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Game\\Resources\\saves.json";
 
         public static List<string> GetSavesList() {
             if (Saves == null) LoadSaves();
@@ -25,8 +26,7 @@ namespace ConsoleApp.Control {
         public static Save GetSave(string saveName) {
             if (Saves == null) LoadSaves();
             Save dbSave = LoadFromDb(saveName);
-            return dbSave; // TODO
-            //return dbSave ?? Saves?.FirstOrDefault(save => save.SaveName == saveName).DeepClone();
+            return dbSave ?? Saves?.FirstOrDefault(save => save.SaveName == saveName).DeepClone();
         }
 
         public static Save GetSaveReference(string saveName) {
@@ -34,11 +34,11 @@ namespace ConsoleApp.Control {
             return Saves?.FirstOrDefault(save => save.SaveName == saveName);
         }
 
-        public static void SaveGame(Save save) {
+        public static int SaveGame(Save save) {
             if (Saves == null) LoadSaves();
             Saves?.Add(save);
             SaveChanges();
-            SaveToDb(save);
+            return SaveToDb(save);
         }
 
         public static void DeleteSavedGame(Save save) {
@@ -50,7 +50,7 @@ namespace ConsoleApp.Control {
         
         public static void LoadSaves() {
             Saves = new List<Save>();
-            string path = $"{DataUtils.Path}Resources/saves.json";
+            string path = _savePath;
             StreamReader saveFileReader = new StreamReader(path);
             string jsonString = saveFileReader.ReadToEnd();
             Save[] savesArray = JsonSerializer.Deserialize<Save[]>(jsonString);
@@ -59,7 +59,7 @@ namespace ConsoleApp.Control {
         }
 
         private static void SaveChanges() {
-            string path = $"{DataUtils.Path}Resources/saves.json";
+            string path = _savePath;
             StreamWriter saveFileWriter = new StreamWriter(path);
             string jsonString = JsonSerializer.Serialize(Saves, DataUtils.JsonOptions);
             saveFileWriter.Write(jsonString);
@@ -71,7 +71,7 @@ namespace ConsoleApp.Control {
             return Saves.Any(save => save.SaveName == name);
         }
 
-        private static void SaveToDb(Save save) {
+        private static int SaveToDb(Save save) {
             using AppDbContext ctx = new AppDbContext();
 
             GameProperties props = save.Properties;
@@ -92,25 +92,25 @@ namespace ConsoleApp.Control {
             ctx.SaveChanges();
 
             foreach (Ship ship in flotilla1.Ships) {
-                var ShipInDb = new BattleShipsObject {
+                var shipInDb = new BattleShipsObject {
                     FlotillaId = flotillaInDb1.BattleFlotillasObjectId,
                     Name = ship.Name,
                     Size = ship.Size,
                     Health = ship.Health,
                     ShipCellsArray = JsonSerializer.Serialize(ship.ShipCellsArray),
                 };
-                ctx.Add(ShipInDb);
+                ctx.Add(shipInDb);
             }
             
             foreach (Ship ship in flotilla2.Ships) {
-                var ShipInDb = new BattleShipsObject {
+                var shipInDb = new BattleShipsObject {
                     FlotillaId = flotillaInDb2.BattleFlotillasObjectId,
                     Name = ship.Name,
                     Size = ship.Size,
                     Health = ship.Health,
                     ShipCellsArray = JsonSerializer.Serialize(ship.ShipCellsArray),
                 };
-                ctx.Add(ShipInDb);
+                ctx.Add(shipInDb);
             }
             ctx.SaveChanges();
             
@@ -145,14 +145,15 @@ namespace ConsoleApp.Control {
             ctx.Add(propertiesFlotillasInDb2);
             ctx.SaveChanges();
 
-            var SaveInDb = new SaveObject {
+            var saveInDb = new SaveObject {
                 SaveName = save.SaveName,
                 BattlePropertiesObjectId = propertiesInDb.BattlePropertiesObjectId
             };
 
-            ctx.Add(SaveInDb);
+            ctx.Add(saveInDb);
             ctx.SaveChanges();
 
+            return saveInDb.SaveObjectId;
             // TODO refactor
         }
 

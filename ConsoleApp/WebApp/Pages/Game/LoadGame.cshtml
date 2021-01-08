@@ -1,0 +1,28 @@
+@page
+@model WebApp.Pages.Game.LoadGameModel
+
+<main role="main" class="pb-3">
+    <table class="table table-bordered table-striped mb-0 mt-5 bg-white save-menu">
+        <thead>
+        <tr>
+            <th>Save name</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var item in Model.Saves)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.SaveName)
+                </td>
+                <td>
+                    <a href="@($"/Game/PlayGame?gameId={item.SaveObjectId}")" class="nav-link px-4 rounded-pill">
+                        <input type="submit" value="Load" class="btn btn-block btn-primary" style="width: 100%"/>
+                    </a>
+                </td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</main>

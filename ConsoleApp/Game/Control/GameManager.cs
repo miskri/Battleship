@@ -4,6 +4,7 @@ using ConsoleApp.Data;
 using ConsoleApp.EventListeners;
 using ConsoleApp.Graphics;
 using ConsoleApp.Objects;
+using ConsoleApp.Utils;
 
 namespace ConsoleApp.Control {
     
@@ -56,6 +57,32 @@ namespace ConsoleApp.Control {
             
             _props.FieldSize = new[] {settings.BattlefieldSize[0], settings.BattlefieldSize[1]};
             StartGame(props);
+        }
+
+        public void LoadFastGameForWeb(GameProperties props) {
+            Console.WriteLine();
+            props.Player1Name = "Human";
+            props.Player2Name = "AI";
+            Settings settings = new Settings {
+                BattlefieldSize = new []{10, 10},
+                ShipArrangement = false,
+                ShipCount = new []{1, 1, 1, 1, 1},
+                ShipNames = new []{"Carrier", "Battleship", "Submarine", "Cruiser", "Patrol"},
+                ShipSettings = new []{5, 4, 3, 2, 1}
+            };
+            
+            (props.Player1Field, props.Player1Flotilla) = FieldManager.GenerateField(settings);
+            (props.Player2Field, props.Player2Flotilla) = FieldManager.GenerateField(settings);
+            
+            props.FieldSize = new[] {settings.BattlefieldSize[0], settings.BattlefieldSize[1]};
+            
+            props.BattleHistory = new List<string> {
+                DataUtils.Default + $"{props.Player1Name} is ready!", DataUtils.Default + $"{props.Player2Name} is ready!"
+            };
+            props.CurrentPlayer = props.Player1Name;
+            props.MenuOptions = new List<string>{"Main Menu", "Quit"};
+            props.MenuOptions.Insert( 0, "Save");
+            props.SelectableRowCount = props.FieldSize[0];
         }
 
         private void LoadPlayerVsPlayerGame(Settings settings, GameProperties props) {

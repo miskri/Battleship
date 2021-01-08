@@ -1,1 +1,3044 @@
-[]
+[
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              3,
+              3,
+              4,
+              3,
+              5,
+              3,
+              6,
+              3,
+              7,
+              3
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              0,
+              3,
+              0,
+              4,
+              0,
+              5,
+              0,
+              6
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              2,
+              9,
+              3,
+              9,
+              4,
+              9
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              8,
+              0,
+              8,
+              1
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              8,
+              5
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              2,
+              0,
+              3,
+              0,
+              4,
+              0,
+              5,
+              0,
+              6,
+              0
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              4,
+              7,
+              5,
+              7,
+              6,
+              7,
+              7,
+              7
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              2,
+              6,
+              2,
+              7,
+              2,
+              8
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              1,
+              4,
+              2,
+              4
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              0,
+              0
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:45:41"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              1,
+              0,
+              2,
+              0,
+              3,
+              0,
+              4,
+              0,
+              5,
+              0
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              2,
+              2,
+              2,
+              3,
+              2,
+              4,
+              2,
+              5
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              3,
+              8,
+              4,
+              8,
+              5,
+              8
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              5,
+              4,
+              6,
+              4
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              4,
+              6
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              5,
+              8,
+              6,
+              8,
+              7,
+              8,
+              8,
+              8,
+              9,
+              8
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              2,
+              4,
+              3,
+              4,
+              4,
+              4,
+              5,
+              4
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              3,
+              6,
+              4,
+              6,
+              5,
+              6
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              0,
+              3,
+              0,
+              4
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              6,
+              1
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:50:09"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              1,
+              5,
+              1,
+              6,
+              1,
+              7,
+              1,
+              8,
+              1,
+              9
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              6,
+              9,
+              7,
+              9,
+              8,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              5,
+              3,
+              6,
+              3,
+              7,
+              3
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              8,
+              5,
+              9,
+              5
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              2,
+              0
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              3,
+              5,
+              4,
+              5,
+              5,
+              5,
+              6,
+              5,
+              7,
+              5
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              9,
+              2,
+              9,
+              3,
+              9,
+              4,
+              9,
+              5
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              4,
+              1,
+              5,
+              1,
+              6,
+              1
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              0,
+              3,
+              0,
+              4
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              0,
+              7
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:51:42"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              6,
+              0,
+              6,
+              1,
+              6,
+              2,
+              6,
+              3,
+              6,
+              4
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              4,
+              0,
+              4,
+              1,
+              4,
+              2,
+              4,
+              3
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              7,
+              6,
+              7,
+              7,
+              7,
+              8
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              0,
+              8,
+              0,
+              9
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              3,
+              7
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              8,
+              3,
+              8,
+              4,
+              8,
+              5,
+              8,
+              6,
+              8,
+              7
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              0,
+              4,
+              1,
+              4,
+              2,
+              4,
+              3,
+              4
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              3,
+              2,
+              4,
+              2,
+              5,
+              2
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              3,
+              8,
+              3,
+              9
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              0,
+              0
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:51:53"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              2,
+              0,
+              2,
+              1,
+              2,
+              2,
+              2,
+              3,
+              2,
+              4
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              5,
+              1,
+              5,
+              2,
+              5,
+              3,
+              5,
+              4
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              3,
+              8,
+              4,
+              8,
+              5,
+              8
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              9,
+              2,
+              9,
+              3
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              9,
+              5
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              5,
+              5,
+              5,
+              6,
+              5,
+              7,
+              5,
+              8,
+              5,
+              9
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              4,
+              0,
+              4,
+              1,
+              4,
+              2,
+              4,
+              3
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              1,
+              8,
+              2,
+              8,
+              3,
+              8
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              0,
+              1,
+              0,
+              2
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              3,
+              6
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:52:22"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              4,
+              9,
+              5,
+              9,
+              6,
+              9,
+              7,
+              9,
+              8,
+              9
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              4,
+              3,
+              5,
+              3,
+              6,
+              3,
+              7,
+              3
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              2,
+              2,
+              2,
+              3,
+              2,
+              4
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              8,
+              0,
+              8,
+              1
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              6,
+              1
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              0,
+              9,
+              1,
+              9,
+              2,
+              9,
+              3,
+              9,
+              4,
+              9
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              0,
+              2,
+              1,
+              2,
+              2,
+              2,
+              3,
+              2
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              3,
+              4,
+              4,
+              4,
+              5,
+              4
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              1,
+              5,
+              1,
+              6
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              9,
+              9
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:53:44"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              6,
+              3,
+              6,
+              4,
+              6,
+              5,
+              6,
+              6,
+              6,
+              7
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              2,
+              0,
+              3,
+              0,
+              4,
+              0,
+              5,
+              0
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              8,
+              0,
+              8,
+              1,
+              8,
+              2
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              1,
+              3,
+              1,
+              4
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              6,
+              9
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              9,
+              5,
+              9,
+              6,
+              9,
+              7,
+              9,
+              8,
+              9,
+              9
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              7,
+              4,
+              7,
+              5,
+              7,
+              6,
+              7,
+              7
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              9,
+              0,
+              9,
+              1,
+              9,
+              2
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              4,
+              0,
+              5,
+              0
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              3,
+              9
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:55:02"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              3,
+              1,
+              3,
+              2,
+              3,
+              3,
+              3,
+              4,
+              3,
+              5
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              6,
+              1,
+              7,
+              1,
+              8,
+              1,
+              9,
+              1
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              7,
+              9,
+              8,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              8,
+              3,
+              8,
+              4
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              8,
+              6
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              9,
+              3,
+              9,
+              4,
+              9,
+              5,
+              9,
+              6,
+              9,
+              7
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              5,
+              2,
+              5,
+              3,
+              5,
+              4,
+              5,
+              5
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              5,
+              8,
+              6,
+              8,
+              7,
+              8
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              5,
+              0,
+              6,
+              0
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              0,
+              9
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:57:16"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              0,
+              1,
+              0,
+              2,
+              0,
+              3,
+              0,
+              4,
+              0,
+              5
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              8,
+              4,
+              8,
+              5,
+              8,
+              6,
+              8,
+              7
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              3,
+              6,
+              4,
+              6,
+              5,
+              6
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              6,
+              2,
+              7,
+              2
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              3,
+              2
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              9,
+              2,
+              9,
+              3,
+              9,
+              4,
+              9,
+              5,
+              9,
+              6
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              3,
+              9,
+              4,
+              9,
+              5,
+              9,
+              6,
+              9
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              6,
+              3,
+              6,
+              4,
+              6,
+              5
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              0,
+              7
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:57:21"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              4,
+              7,
+              5,
+              7,
+              6,
+              7,
+              7,
+              7,
+              8,
+              7
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              0,
+              5,
+              0,
+              6,
+              0,
+              7,
+              0,
+              8
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              3,
+              5,
+              4,
+              5,
+              5,
+              5
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              3,
+              1,
+              3,
+              2
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              6,
+              3
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              4,
+              4,
+              5,
+              4,
+              6,
+              4,
+              7,
+              4,
+              8,
+              4
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              3,
+              9,
+              4,
+              9,
+              5,
+              9,
+              6,
+              9
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              5,
+              7,
+              6,
+              7,
+              7,
+              7
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              2,
+              2,
+              2,
+              3
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              1,
+              8
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:58:39"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              6,
+              4,
+              6,
+              5,
+              6,
+              6,
+              6,
+              7,
+              6,
+              8
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              2,
+              3,
+              2,
+              4,
+              2,
+              5,
+              2,
+              6
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              2,
+              9,
+              3,
+              9,
+              4,
+              9
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              8,
+              5,
+              8,
+              6
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              0,
+              2
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              1,
+              3,
+              1,
+              4,
+              1,
+              5,
+              1,
+              6,
+              1,
+              7
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              5,
+              5,
+              6,
+              5,
+              7,
+              5,
+              8,
+              5
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              4,
+              2,
+              5,
+              2,
+              6,
+              2
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              0,
+              1,
+              1,
+              1
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              3,
+              9
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:58:47"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              0,
+              9,
+              1,
+              9,
+              2,
+              9,
+              3,
+              9,
+              4,
+              9
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              4,
+              2,
+              4,
+              3,
+              4,
+              4,
+              4,
+              5
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              6,
+              4,
+              6,
+              5,
+              6,
+              6
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              2,
+              0,
+              3,
+              0
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              9,
+              7
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              1,
+              8,
+              2,
+              8,
+              3,
+              8,
+              4,
+              8,
+              5,
+              8
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              2,
+              6,
+              3,
+              6,
+              4,
+              6,
+              5,
+              6
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              4,
+              2,
+              5,
+              2,
+              6,
+              2
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              9,
+              7,
+              9,
+              8
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              2,
+              0
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:59:13"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              2,
+              6,
+              3,
+              6,
+              4,
+              6,
+              5,
+              6,
+              6,
+              6
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              2,
+              1,
+              2,
+              2,
+              2,
+              3,
+              2,
+              4
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              0,
+              6,
+              0,
+              7,
+              0,
+              8
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              4,
+              3,
+              4,
+              4
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              5,
+              0
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              4,
+              7,
+              5,
+              7,
+              6,
+              7,
+              7,
+              7,
+              8,
+              7
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              2,
+              5,
+              3,
+              5,
+              4,
+              5,
+              5,
+              5
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              6,
+              2,
+              7,
+              2,
+              8,
+              2
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              2,
+              9,
+              3,
+              9
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              8,
+              9
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 19:59:22"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              1,
+              8,
+              2,
+              8,
+              3,
+              8,
+              4,
+              8,
+              5,
+              8
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              2,
+              0,
+              2,
+              1,
+              2,
+              2,
+              2,
+              3
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              8,
+              0,
+              8,
+              1,
+              8,
+              2
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              7,
+              8,
+              8,
+              8
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              5,
+              1
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              8,
+              0,
+              8,
+              1,
+              8,
+              2,
+              8,
+              3,
+              8,
+              4
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              1,
+              0,
+              1,
+              1,
+              1,
+              2,
+              1,
+              3
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              0,
+              7,
+              1,
+              7,
+              2,
+              7
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              5,
+              5,
+              5,
+              6
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              3,
+              2
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 20:00:06"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              0,
+              4,
+              1,
+              4,
+              2,
+              4,
+              3,
+              4,
+              4,
+              4
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              2,
+              9,
+              3,
+              9,
+              4,
+              9,
+              5,
+              9
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              5,
+              7,
+              6,
+              7,
+              7,
+              7
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              2,
+              6,
+              3,
+              6
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              0,
+              6
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              2,
+              2,
+              3,
+              2,
+              4,
+              2,
+              5,
+              2,
+              6,
+              2
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              8,
+              5,
+              8,
+              6,
+              8,
+              7,
+              8,
+              8
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              3,
+              8,
+              4,
+              8,
+              5,
+              8
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              1,
+              4,
+              2,
+              4
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              8,
+              0
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 20:00:29"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              8,
+              1,
+              8,
+              2,
+              8,
+              3,
+              8,
+              4,
+              8,
+              5
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              3,
+              3,
+              4,
+              3,
+              5,
+              3,
+              6,
+              3
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              3,
+              5,
+              4,
+              5,
+              5,
+              5
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              0,
+              0,
+              0,
+              1
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              6,
+              0
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              8,
+              1,
+              8,
+              2,
+              8,
+              3,
+              8,
+              4,
+              8,
+              5
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              3,
+              2,
+              3,
+              3,
+              3,
+              4,
+              3,
+              5
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              0,
+              9,
+              1,
+              9,
+              2,
+              9
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              8,
+              8,
+              9,
+              8
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              4,
+              9
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 20:00:32"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              8,
+              3,
+              8,
+              4,
+              8,
+              5,
+              8,
+              6,
+              8,
+              7
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              2,
+              3,
+              3,
+              3,
+              4,
+              3,
+              5,
+              3
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              1,
+              7,
+              1,
+              8,
+              1,
+              9
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              4,
+              1,
+              5,
+              1
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              3,
+              7
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              1,
+              6,
+              2,
+              6,
+              3,
+              6,
+              4,
+              6,
+              5,
+              6
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              5,
+              3,
+              6,
+              3,
+              7,
+              3,
+              8,
+              3
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              1,
+              8,
+              2,
+              8,
+              3,
+              8
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              0,
+              0,
+              1,
+              0
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              6,
+              9
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 20:00:36"
+  },
+  {
+    "Properties": {
+      "Id": null,
+      "GameMode": null,
+      "Player1Name": "Human",
+      "Player2Name": "AI",
+      "Player1Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              5,
+              9,
+              6,
+              9,
+              7,
+              9,
+              8,
+              9,
+              9,
+              9
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              6,
+              6,
+              7,
+              6,
+              8,
+              6,
+              9,
+              6
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              7,
+              0,
+              8,
+              0,
+              9,
+              0
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              8,
+              3,
+              8,
+              4
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              1,
+              4
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "Player2Flotilla": {
+        "Ships": [
+          {
+            "Name": "Carrier",
+            "Size": 5,
+            "Health": 5,
+            "ShipCellsArray": [
+              1,
+              0,
+              1,
+              1,
+              1,
+              2,
+              1,
+              3,
+              1,
+              4
+            ]
+          },
+          {
+            "Name": "Battleship",
+            "Size": 4,
+            "Health": 4,
+            "ShipCellsArray": [
+              6,
+              8,
+              7,
+              8,
+              8,
+              8,
+              9,
+              8
+            ]
+          },
+          {
+            "Name": "Submarine",
+            "Size": 3,
+            "Health": 3,
+            "ShipCellsArray": [
+              1,
+              8,
+              2,
+              8,
+              3,
+              8
+            ]
+          },
+          {
+            "Name": "Cruiser",
+            "Size": 2,
+            "Health": 2,
+            "ShipCellsArray": [
+              7,
+              3,
+              7,
+              4
+            ]
+          },
+          {
+            "Name": "Patrol",
+            "Size": 1,
+            "Health": 1,
+            "ShipCellsArray": [
+              3,
+              3
+            ]
+          }
+        ],
+        "Size": 15,
+        "FlotillaHealth": 15
+      },
+      "FieldSize": [
+        10,
+        10
+      ],
+      "Player1FieldArray": null,
+      "Player2FieldArray": null,
+      "CurrentPlayer": "Human",
+      "Round": 0,
+      "SelectableRowCount": 10,
+      "BattleHistory": [
+        "\u001B[40m\u001B[33mHuman is ready!",
+        "\u001B[40m\u001B[33mAI is ready!"
+      ],
+      "MenuOptions": [
+        "Save",
+        "Main Menu",
+        "Quit"
+      ]
+    },
+    "SaveName": " - 08.01.2021 20:02:48"
+  }
+]

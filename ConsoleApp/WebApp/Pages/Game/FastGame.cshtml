@@ -1,0 +1,28 @@
+﻿@page
+@model WebApp.Pages.Game.FastGame
+
+<div class="text-center">
+    <h1 class="title">Battleship</h1>
+    <div class="board">
+        @for (var y = 0; y < 10; y++)
+        {
+            <div class="line">
+                @for (var x = 0; x < 10; x++)
+                {
+                    <div class="column tile-@y-@x"> </div>
+                }
+            </div>
+        }
+    </div>
+    <div class="board">
+            @for (var y = 0; y < 10; y++)
+            {
+                <div class="line">
+                    @for (var x = 0; x < 10; x++)
+                    {
+                        <div class="column tile-@y-@x"> </div>
+                    }
+                </div>
+            }
+        </div>
+</div>

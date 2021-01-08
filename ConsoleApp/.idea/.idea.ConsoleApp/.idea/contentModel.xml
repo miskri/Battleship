@@ -111,8 +111,10 @@
           <e p="user_settings.json" t="Include" />
         </e>
         <e p="RoundHistory" t="Include">
+          <e p="-1200618991.json" t="Include" />
           <e p="-1588209557.json" t="Include" />
           <e p="-317126943.json" t="Include" />
+          <e p="-823935014.json" t="Include" />
         </e>
         <e p="Utils" t="Include">
           <e p="DataUtils.cs" t="Include" />
@@ -120,14 +122,14 @@
         </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />
-      <e p="Web" t="IncludeRecursive">
+      <e p="WebApp" t="IncludeRecursive">
         <e p="appsettings.Development.json" t="Include" />
         <e p="appsettings.json" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
-              <e p="Web.AssemblyInfo.cs" t="Include" />
+              <e p="WebApp.AssemblyInfo.cs" t="Include" />
             </e>
           </e>
         </e>
@@ -136,6 +138,12 @@
           <e p="_ViewStart.cshtml" t="Include" />
           <e p="Error.cshtml" t="Include" />
           <e p="Error.cshtml.cs" t="Include" />
+          <e p="Game" t="Include">
+            <e p="FastGame.cshtml" t="Include" />
+            <e p="FastGame.cshtml.cs" t="Include" />
+            <e p="LoadGame.cshtml" t="Include" />
+            <e p="LoadGame.cshtml.cs" t="Include" />
+          </e>
           <e p="Index.cshtml" t="Include" />
           <e p="Index.cshtml.cs" t="Include" />
           <e p="Privacy.cshtml" t="Include" />
@@ -150,23 +158,13 @@
           <e p="launchSettings.json" t="Include" />
         </e>
         <e p="Startup.cs" t="Include" />
-        <e p="Web.csproj" t="IncludeRecursive" />
+        <e p="WebApp.csproj" t="IncludeRecursive" />
         <e p="wwwroot" t="Include">
           <e p="css" t="Include">
-            <e p="main.css" t="Include" />
             <e p="site.css" t="Include" />
           </e>
           <e p="favicon.ico" t="Include" />
           <e p="js" t="Include">
-            <e p="CellState.js" t="Include" />
-            <e p="constants.js" t="Include" />
-            <e p="main_drawing.js" t="Include" />
-            <e p="menu_navigation.js" t="Include" />
-            <e p="MenuItem.js" t="Include" />
-            <e p="p5.js" t="Include" />
-            <e p="ShipInMenu.js" t="Include" />
-            <e p="ShipOnField.js" t="Include" />
-            <e p="ships_placement.js" t="Include" />
             <e p="site.js" t="Include" />
           </e>
           <e p="lib" t="Include">
