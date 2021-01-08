@@ -7,25 +7,81 @@
     <e p="C:\Users\Mihhail\.Rider2019.2\system\resharper-host\local\Transient\ReSharperHost\v192\SolutionCaches\_ConsoleApp.1374259956.00" t="ExcludeRecursive" />
     <e p="C:\Users\Mihhail\RiderProjects\icd0008-2020f\ConsoleApp" t="IncludeFlat">
       <e p="ConsoleApp.sln" t="IncludeFlat" />
-      <e p="Game" t="IncludeRecursive">
-        <e p="BattleEventListener.cs" t="Include" />
-        <e p="BattleManager.cs" t="Include" />
+      <e p="DAL" t="IncludeRecursive">
+        <e p="AppDbContext.cs" t="Include" />
         <e p="bin" t="ExcludeRecursive" />
-        <e p="BoardBuilder.cs" t="Include" />
-        <e p="BoardRenderer.cs" t="Include" />
-        <e p="BuilderEventListener.cs" t="Include" />
-        <e p="Color.cs" t="Include" />
+        <e p="DAL.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="DAL.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Database" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Database.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Database.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+      </e>
+      <e p="Domain" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
+        <e p="Domain.csproj" t="IncludeRecursive" />
+        <e p="obj" t="ExcludeRecursive">
+          <e p="Debug" t="Include">
+            <e p="netcoreapp3.1" t="Include">
+              <e p="Domain.AssemblyInfo.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="Objects" t="Include">
+          <e p="BattleFlotillasObject.cs" t="Include" />
+          <e p="BattlePropertiesObject.cs" t="Include" />
+          <e p="BattleShipsObject.cs" t="Include" />
+          <e p="PropertiesFlotillasObject.cs" t="Include" />
+          <e p="SaveObject.cs" t="Include" />
+        </e>
+      </e>
+      <e p="Game" t="IncludeRecursive">
+        <e p="bin" t="ExcludeRecursive" />
         <e p="ConsoleApplication.cs" t="Include" />
-        <e p="default_settings.json" t="Include" />
-        <e p="FieldManager.cs" t="Include" />
-        <e p="Flotilla.cs" t="Include" />
+        <e p="Control" t="Include">
+          <e p="BattleManager.cs" t="Include" />
+          <e p="BoardBuilder.cs" t="Include" />
+          <e p="FieldManager.cs" t="Include" />
+          <e p="GameManager.cs" t="Include" />
+          <e p="MenuManager.cs" t="Include" />
+          <e p="SaveManager.cs" t="Include" />
+          <e p="SettingsManager.cs" t="Include" />
+          <e p="TimeTravellingManager.cs" t="Include" />
+        </e>
+        <e p="Data" t="Include">
+          <e p="BuilderProperties.cs" t="Include" />
+          <e p="GameProperties.cs" t="Include" />
+          <e p="MenuDataContainer.cs" t="Include" />
+          <e p="MenuLevelDataContainer.cs" t="Include" />
+          <e p="MenuProperties.cs" t="Include" />
+        </e>
+        <e p="EventListeners" t="Include">
+          <e p="BattleEventListener.cs" t="Include" />
+          <e p="BuilderEventListener.cs" t="Include" />
+          <e p="MenuEventListener.cs" t="Include" />
+          <e p="SettingsEventListener.cs" t="Include" />
+        </e>
         <e p="Game.csproj" t="IncludeRecursive" />
-        <e p="GameManager.cs" t="Include" />
-        <e p="MenuEventListener.cs" t="Include" />
-        <e p="MenuLevel.cs" t="Include" />
-        <e p="MenuLevelDataContainer.cs" t="Include" />
-        <e p="MenuManager.cs" t="Include" />
-        <e p="MenuRenderer.cs" t="Include" />
+        <e p="Graphics" t="Include">
+          <e p="BoardRenderer.cs" t="Include" />
+          <e p="BuilderRenderer.cs" t="Include" />
+          <e p="Color.cs" t="Include" />
+          <e p="MenuRenderer.cs" t="Include" />
+          <e p="Renderer.cs" t="Include" />
+        </e>
         <e p="obj" t="ExcludeRecursive">
           <e p="Debug" t="Include">
             <e p="netcoreapp3.1" t="Include">
@@ -33,10 +89,25 @@
             </e>
           </e>
         </e>
-        <e p="Save.cs" t="Include" />
-        <e p="Settings.cs" t="Include" />
-        <e p="Ship.cs" t="Include" />
-        <e p="user_settings.json" t="Include" />
+        <e p="Objects" t="Include">
+          <e p="Flotilla.cs" t="Include" />
+          <e p="MenuLevel.cs" t="Include" />
+          <e p="Save.cs" t="Include" />
+          <e p="Settings.cs" t="Include" />
+          <e p="Ship.cs" t="Include" />
+        </e>
+        <e p="Resources" t="Include">
+          <e p="default_settings.json" t="Include" />
+          <e p="saves.json" t="Include" />
+          <e p="user_settings.json" t="Include" />
+        </e>
+        <e p="RoundHistory" t="Include">
+          <e p="-759293086.json" t="Include" />
+        </e>
+        <e p="Utils" t="Include">
+          <e p="DataUtils.cs" t="Include" />
+          <e p="StringValidator.cs" t="Include" />
+        </e>
       </e>
       <e p="packages" t="ExcludeRecursive" />
       <e p="Web" t="IncludeRecursive">
