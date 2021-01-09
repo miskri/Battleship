@@ -43,7 +43,7 @@ namespace ConsoleApp.Control {
 
         public static void DeleteSavedGame(Save save) {
             if (Saves == null) LoadSaves();
-            Saves?.Remove(Saves.First(jsonSave => jsonSave.SaveName == save.SaveName));
+            Saves?.Remove(Saves.FirstOrDefault(x => x.SaveName == save.SaveName));
             SaveChanges();
             DeleteFromDb(save.SaveName);
         }

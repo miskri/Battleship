@@ -1,9 +1,11 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using ConsoleApp.Control;
 using ConsoleApp.EventListeners;
 using ConsoleApp.Graphics;
 using ConsoleApp.Objects;
+using ConsoleApp.Utils;
 
 namespace ConsoleApp.Data {
     
@@ -60,6 +62,16 @@ namespace ConsoleApp.Data {
 
         public int GetEnemyShipsCount() {
             return CurrentPlayer == Player1Name ? Player2Flotilla.ShipCount : Player1Flotilla.ShipCount;
+        }
+
+        public string FilterString(string source) {
+            string result = source.DeepClone();
+            string[] consoleEscaping = {
+                "\x1b[0m", "\x1b[30m", "\x1b[40m", "\x1b[31m", "\x1b[41m", "\x1b[32m",
+                "\x1b[33m", "\x1b[44m", "\x1b[47m", "\x1b[100m", "\x1b[101m", "\x1b[102m", "\x1b[104m",
+                "\x1b[97m", "\x1b[107m"
+            };
+            return consoleEscaping.Aggregate(result, (current, item) => current.Replace(item, ""));
         }
 
         public void LoadPlayer1FieldToArray() {
