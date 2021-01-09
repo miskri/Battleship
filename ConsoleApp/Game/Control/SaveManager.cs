@@ -43,7 +43,7 @@ namespace ConsoleApp.Control {
 
         public static void DeleteSavedGame(Save save) {
             if (Saves == null) LoadSaves();
-            Saves?.Remove(save);
+            Saves?.Remove(Saves.First(jsonSave => jsonSave.SaveName == save.SaveName));
             SaveChanges();
             DeleteFromDb(save.SaveName);
         }
@@ -87,8 +87,8 @@ namespace ConsoleApp.Control {
                 FlotillaHealth = flotilla2.FlotillaHealth
             };
 
-            ctx.Add(flotillaInDb1);
-            ctx.Add(flotillaInDb2);
+            ctx.Flotillas.Add(flotillaInDb1);
+            ctx.Flotillas.Add(flotillaInDb2);
             ctx.SaveChanges();
 
             foreach (Ship ship in flotilla1.Ships) {
@@ -165,10 +165,10 @@ namespace ConsoleApp.Control {
             
             var props = ctx.Properties.First(x => x.BattlePropertiesObjectId == save.BattlePropertiesObjectId);
             var test = ctx.PropertiesFlotillas.Where(x => x.BattleId == props.BattlePropertiesObjectId).ToList();
-            var flotilla1 = ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[0].FlotillaId);
-            var flotilla2 = ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[1].FlotillaId);
-            var ships1 = ctx.Ships.Where(x => x.BattleShipsObjectId == flotilla1.BattleFlotillasObjectId).ToList();
-            var ships2 = ctx.Ships.Where(x => x.BattleShipsObjectId == flotilla2.BattleFlotillasObjectId).ToList();
+            var flotilla1 = ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[1].FlotillaId);
+            var flotilla2 = ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[0].FlotillaId);
+            var ships1 = ctx.Ships.Where(x => x.FlotillaId == flotilla1.BattleFlotillasObjectId).ToList();
+            var ships2 = ctx.Ships.Where(x => x.FlotillaId == flotilla2.BattleFlotillasObjectId).ToList();
 
             Flotilla player1Flotilla = new Flotilla {
                 Destroyed = false, 

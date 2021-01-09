@@ -70,7 +70,7 @@ namespace ConsoleApp.Graphics {
             return fieldsAfterGame;
         }
 
-        private string GetField(GameProperties props, int row, int col, int index) { // TODO here can cause render mistakes with fields
+        private string GetField(GameProperties props, int row, int col, int index) { 
             string fieldString = "";
             if (props.GameMode != "AI vs AI" && props.GameMode != "Player vs Player") {
                 fieldString += DrawEnemyField(props.Player2Field, row, col, index);

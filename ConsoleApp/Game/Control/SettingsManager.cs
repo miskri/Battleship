@@ -96,7 +96,7 @@ namespace ConsoleApp.Control {
                       " do not use menu names for ships!]: ");
             }
             
-            props.Level.SubmenuList.Add(name);
+            //props.Level.SubmenuList.Add(name);
             Console.CursorVisible = false;
             return name;
         }

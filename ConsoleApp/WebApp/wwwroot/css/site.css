@@ -1,11 +1,11 @@
 ﻿/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
 
-a.navbar-brand {
-  white-space: normal;
-  text-align: center;
-  word-break: break-all;
-}
+/*a.navbar-brand {*/
+/*  white-space: normal;*/
+/*  text-align: center;*/
+/*  word-break: break-all;*/
+/*}*/
 
 /* Provide sufficient contrast against white background */
 a {
@@ -13,13 +13,14 @@ a {
 }
 
 .btn-primary {
-  color: #fff;
+  color: #a5a5a5;
   background-color: #1b6ec2;
   border-color: #1861ac;
+  margin-top: 10px !important;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
-  color: #fff;
+  color: #a5a5a5;
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
@@ -61,27 +62,36 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
-}
-.footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  white-space: nowrap;
-  line-height: 60px; /* Vertically center the text there */
+  background: #637d77;
 }
 
 .column {
   display: table-cell;
   width: 30px;
   height: 30px;
-  background-color: #a09c9c;
   border-right: 1px solid black;
   border-bottom: 1px solid black;
   cursor: pointer;
 }
 
+.field {
+  background-color: #0068c1;
+}
+
+.collision {
+  background-color: #c10005;
+}
+
+.miss {
+  background-color: #fffcf5;
+}
+
+.ship {
+  background-color: #2a2524;
+}
+
 .column:hover {
-  background-color: #696565;
+  background-color: rgb(255, 252, 109);
 }
 
 .line {
@@ -96,121 +106,78 @@ body {
   margin-top: 5rem;
 }
 
-.value {
-  margin-bottom: 0;
-}
-
-.message {
-  font-family: 'Roboto', sans-serif;
-  font-size: 4rem;
-  border: 0.25rem solid black;
-  height: 20rem;
-  width: 30rem;
-  margin: 10rem auto;
-}
-
-.image {
-  margin-top: -5px
-}
-
-.flag-counter {
-  float: right;
-  margin-right: 10px;
-  margin-bottom: 0;
-}
-
 .board-top {
   height: 30px;
   border-bottom: 1px solid black;
   border-right: 1px solid black;
 }
 
-.difficulty {
-  width: 15rem;
-  margin-top: 1rem
-}
-
-.game-menu {
-  width: 60rem;
-  margin: 5rem auto;
-  border: 0.25rem solid black;
-  padding: 2rem;
-}
-
-.title {
-  margin-top: 3rem;
-  font-size: 4rem
-}
-
-.timer {
-  float: right;
-  margin-right: 5px;
-}
-
-.back-btn {
-  width: 15rem;
-  margin-bottom: 4rem
-}
-
-.menu-header {
-  font-weight: bold;
-  font-size: 2rem;
-}
-
-.custom-settings input {
-  width: 3rem
-}
-
-.play-btn {
-  margin-top: 2rem;
-  width: 55rem;
-}
-
-.question-img {
-  margin-top: -5px;
-  margin-left: 3px;
-}
-
-.popup {
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0,0,0,0.7);
-  position: fixed;
-  top: 0;
-  left: 0;
-}
-
-.popup div {
-  width: 26rem;
-  height: 21rem;
-  padding: 30px;
-  margin: 20rem auto 0;
-  background-color: white;
-  border-radius: 15px;
-}
-
-.popup-par {
-  float: left;
-  font-weight: bold;
-}
-
-tr {
-  width: 100%;
-  display: inline-table;
-  table-layout: fixed;
-}
-
 table {
   width: 105%!important;
   height: 15rem;
+  border-radius: 22px;
   display: -moz-groupbox;
+  border: 0 !important;
+}
+
+.table {
+  color: #2c2c2d;
 }
 
 tbody {
   overflow-y: scroll;
-  height: 200px;
-  width: 100%;
+  height: 600px;
+  width: 1165px;
   position: absolute;
+}
+
+p {
+  color: #fdf8ff;
+}
+
+th {
+  width: 565px;
+  border-left: 0 !important;
+  border-top: 0 !important;
+}
+
+.th1 {
+  width: 593px;
+  border-right: 0 !important;
+  border-top: 0 !important;
+}
+
+.title {
+  color: #ffffff;
+}
+
+.btn-menu {
+  width: 380px !important;
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+  margin-left: 18px;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+.btn:hover {
+  color: #d6d9d4;
+}
+
+.message {
+  color: #f7faf5;
+}
+
+td {
+  width: 580px;
+  border: 0 !important;
+  vertical-align: inherit !important;
+}
+
+.td1 {
+  width: 580px;
+  display: flex;
 }
 
 .save {
@@ -220,4 +187,77 @@ tbody {
 input[type=radio] {
   height: 1rem;
   width: 1rem;
+}
+
+.save-menu {
+  width: 50rem;
+  margin: 0 auto;
+  height: 650px;
+}
+
+.main-menu {
+  font-family: 'Roboto', sans-serif;
+  font-size: 3rem;
+  padding: 2rem;
+  background: white;
+  height: 16rem;
+  width: 30rem;
+  margin: 15rem auto;
+  border-radius: 10px;
+}
+
+.btn-primary {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+  width: 250px !important;
+  margin-left: 18px;
+}
+
+.nav-pills .nav-link.active, .nav-pills .show > {
+  color: #fff;
+  background-color: #1b6ec2;
+  border-color: #1861ac;
+}
+
+.nav-link {
+  padding: 0 !important;
+}
+
+.btn-block {
+  
+}
+
+.border-top {
+  border-top: 1px solid #e5e5e5;
+}
+.border-bottom {
+  border-bottom: 1px solid #e5e5e5;
+}
+
+.box-shadow {
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
+.back-menu-btn {
+  margin: 2.5rem auto;
+}
+
+.start-game {
+  background: white;
+  padding: 2rem;
+  width: 29rem;
+  margin: 10rem auto;
+}
+
+.start-game form {
+  width: 20rem;
+}
+
+.start-game form input[type=text] {
+  border: 1px solid black!important;
+}
+
+.start-game form input[type=submit] {
+  width: 50%;
 }

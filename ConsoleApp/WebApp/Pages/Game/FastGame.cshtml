@@ -4,25 +4,74 @@
 <div class="text-center">
     <h1 class="title">Battleship</h1>
     <div class="board">
-        @for (var y = 0; y < 10; y++)
+        @for (int row = 0; row < Model.Props.FieldSize[0]; row++)
         {
             <div class="line">
-                @for (var x = 0; x < 10; x++)
-                {
-                    <div class="column tile-@y-@x"> </div>
+                @for (int col = 0; col < Model.Props.FieldSize[1]; col++) {
+                    if (Model.Props.Player2Field[row, col] == null || Model.Props.Player2Field[row, col] == "border"
+                         || Model.Props.Player2Field[row, col] == "ship") {
+                        <a class="column field" asp-page="./FastGame" asp-route-gameId="@Model.GameId"
+                           asp-route-row="@(row)" asp-route-col="@(col)">
+                            <div class="tile-@row-@col"> </div>
+                        </a>
+                    }
+                    else if (Model.Props.Player2Field[row, col] == "collision") {
+                        <a class="column collision" asp-page="./FastGame" asp-route-gameId="@Model.GameId"
+                           asp-route-row="@(row)" asp-route-col="@(col)">
+                            <div class="tile-@row-@col"> </div>
+                        </a>
+                    }
+                    else if (Model.Props.Player2Field[row, col] == "miss") {
+                        <a class="column miss" asp-page="./FastGame" asp-route-gameId="@Model.GameId"
+                           asp-route-row="@(row)" asp-route-col="@(col)">
+                            <div class="tile-@row-@col"> </div>
+                        </a>
+                    }
                 }
             </div>
         }
     </div>
     <div class="board">
-            @for (var y = 0; y < 10; y++)
-            {
-                <div class="line">
-                    @for (var x = 0; x < 10; x++)
-                    {
-                        <div class="column tile-@y-@x"> </div>
+        @for (int row = 0; row < Model.Props.FieldSize[0]; row++)
+        {
+            <div class="line">
+                @for (int col = 0; col < Model.Props.FieldSize[1]; col++)
+                {
+                    if (Model.Props.Player1Field[row, col] == null || Model.Props.Player1Field[row, col] == "border") {
+                        <div class="column tile-@row-@col field"> </div>
                     }
-                </div>
-            }
-        </div>
+                    else if (Model.Props.Player1Field[row, col] == "ship") {
+                        <div class="column tile-@row-@col ship"> </div>
+                    }
+                    else if (Model.Props.Player1Field[row, col] == "collision") {
+                        <div class="column tile-@row-@col collision"> </div>
+                    }
+                    else if (Model.Props.Player1Field[row, col] == "miss") {
+                        <div class="column tile-@row-@col miss"> </div>
+                    }
+                }
+            </div>
+        }
+    </div>
+        <p>This is  @Model.Props.CurrentPlayer turn!</p>
+        <p>Ships in enemy flotilla: @Model.Props.Player2Flotilla.Ships.Count</p>
+        <p>Battle history: </p>
+        <p>@Model.Props.BattleHistory[^2]</p>
+        <p>@Model.Props.BattleHistory[^1]</p>
+    <div>
+        
+    </div>
+    @if (Model.Props.Player1Flotilla.FlotillaHealth == 0 || Model.Props.Player2Flotilla.FlotillaHealth == 0) {
+        <script type="text/javascript" async defer>
+                $(".board").hide();
+                $(".text-center").append(`
+                    <div class="message">@Html.Raw(Model.Props.Player2Flotilla.FlotillaHealth == 0 ? 
+                                             Model.Props.Player1Name : Model.Props.Player2Name) wins the game! Congratulations!
+                            <a href="/Index">
+                            <input type="submit" value="Back to menu" class="btn btn-block btn-primary back-menu-btn"/>
+                        </a>
+                    </div>
+                `);
+            </script>
+    }
 </div>

@@ -6,7 +6,7 @@
         <thead>
         <tr>
             <th>Save name</th>
-            <th>Actions</th>
+            <th class="th1">Actions</th>
         </tr>
         </thead>
         <tbody>
@@ -16,11 +16,14 @@
                 <td>
                     @Html.DisplayFor(modelItem => item.SaveName)
                 </td>
-                <td>
-                    <a href="@($"/Game/PlayGame?gameId={item.SaveObjectId}")" class="nav-link px-4 rounded-pill">
-                        <input type="submit" value="Load" class="btn btn-block btn-primary" style="width: 100%"/>
-                    </a>
-                </td>
+            <td class="td1">
+                <form method="post">
+                    <input type="submit" asp-route-saveName="@(item.SaveName)" value="Delete" class="btn btn-block btn-primary"/>
+                </form>
+                <a href="@($"/Game/FastGame?gameId={item.SaveObjectId}")" class="nav-link px-4 rounded-pill">
+                    <input type="submit" value="Load" class="btn btn-block btn-primary"/>
+                </a>
+            </td>
             </tr>
         }
         </tbody>

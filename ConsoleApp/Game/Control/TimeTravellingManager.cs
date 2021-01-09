@@ -12,6 +12,8 @@ namespace ConsoleApp.Control {
         
         private List<GameProperties> _history;
         private int _stepsBackCount;
+        private const string Path = "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Game\\RoundHistory\\";
+
 
         public void WritePreviousStep(GameProperties props) {
             if (_history == null) LoadRoundHistory(props.Id);
@@ -34,15 +36,14 @@ namespace ConsoleApp.Control {
         }
 
         public void SaveRoundHistory(string id) {
-            string path = $"{DataUtils.Path}RoundHistory\\{id}.json";
-            if (!File.Exists(path)) {
-                FileStream stream = File.Create(path);
+            if (!File.Exists($"{Path}{id}.json")) {
+                FileStream stream = File.Create($"{Path}{id}.json");
                 stream.Close();
             }
 
             RoundHistory history = new RoundHistory(_stepsBackCount, _history.ToArray());
             
-            StreamWriter file = new StreamWriter(path);
+            StreamWriter file = new StreamWriter($"{Path}{id}.json");
             string jsonString = JsonSerializer.Serialize(history, DataUtils.JsonOptions);
             
             file.Write(jsonString);
@@ -55,13 +56,13 @@ namespace ConsoleApp.Control {
         }
 
         private void LoadRoundHistory(string id) {
-            if (!File.Exists($"{DataUtils.Path}RoundHistory\\{id}.json")) {
+            if (!File.Exists($"{Path}{id}.json")) {
                 _history = new List<GameProperties>();
                 _stepsBackCount = 5;
                 return;
             }
 
-            string pathToHistory = $"{DataUtils.Path}RoundHistory\\{id}.json";
+            string pathToHistory = $"{Path}{id}.json";
             StreamReader file = new StreamReader(pathToHistory);
 
             string jsonString = file.ReadToEnd();

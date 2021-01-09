@@ -110,12 +110,7 @@
           <e p="saves.json" t="Include" />
           <e p="user_settings.json" t="Include" />
         </e>
-        <e p="RoundHistory" t="Include">
-          <e p="-1200618991.json" t="Include" />
-          <e p="-1588209557.json" t="Include" />
-          <e p="-317126943.json" t="Include" />
-          <e p="-823935014.json" t="Include" />
-        </e>
+        <e p="RoundHistory" t="Include" />
         <e p="Utils" t="Include">
           <e p="DataUtils.cs" t="Include" />
           <e p="StringValidator.cs" t="Include" />

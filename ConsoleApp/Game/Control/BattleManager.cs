@@ -60,7 +60,7 @@ namespace ConsoleApp.Control {
                     RegisterHit(props, row, col);
                     Thread.Sleep(2000); // pause for player switching
                     props.SwitchPlayerTurn();
-                    props.Renderer.RenderBoard(props, row, col);
+                    props.Renderer?.RenderBoard(props, row, col);
                     break;
                 
                 default: // game mode is "Player vs AI"
@@ -74,7 +74,7 @@ namespace ConsoleApp.Control {
                     props.Player1Field = AiMove(props, props.Player1Field);
                     props.SwitchPlayerTurn();
                     
-                    props.Renderer.RenderBoard(props, row, col);
+                    props.Renderer?.RenderBoard(props, row, col);
                     break;
             }
         }
@@ -102,7 +102,7 @@ namespace ConsoleApp.Control {
             props.MenuOptions.Remove("Step back");
             props.BattleHistory.Add($"{Color.YellowText}{props.Winner} destroys all enemy ships!");
             props.SelectableRowCount = 0;
-            props.Renderer.GameOverScreen(props, 0);
+            props.Renderer?.GameOverScreen(props, 0);
         }
 
         // AI move, now it just generates random shot
@@ -168,7 +168,7 @@ namespace ConsoleApp.Control {
         }
 
         public void SaveProgress(GameProperties props) {
-            string saveName = $"{props.GameMode} - {DateTime.Now}"; // save name template: Game mode - saving time
+            string saveName = $"Console {props.GameMode} - {DateTime.Now}"; // save name template: Type Game mode - saving time
             if (SaveManager.Saves == null) SaveManager.LoadSaves();
             
             if (props.Round > 1 && !SaveManager.ContainsThisName(saveName)) {

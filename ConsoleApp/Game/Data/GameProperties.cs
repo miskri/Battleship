@@ -19,8 +19,8 @@ namespace ConsoleApp.Data {
         [NonSerialized] public string[,] Player1Field;
         [NonSerialized] public string[,] Player2Field;
         public int[] FieldSize { get; set; }
-        public string[] Player1FieldArray { get; set; }
-        public string[] Player2FieldArray { get; set; }
+        public string[] Player1FieldArray { get; set; } = {};
+        public string[] Player2FieldArray { get; set; } = {};
         public string CurrentPlayer { get; set; }
         public int Round { get; set; }
         public int SelectableRowCount { get; set; }

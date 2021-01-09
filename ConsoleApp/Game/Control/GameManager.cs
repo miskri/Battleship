@@ -60,7 +60,6 @@ namespace ConsoleApp.Control {
         }
 
         public void LoadFastGameForWeb(GameProperties props) {
-            Console.WriteLine();
             props.Player1Name = "Human";
             props.Player2Name = "AI";
             Settings settings = new Settings {
