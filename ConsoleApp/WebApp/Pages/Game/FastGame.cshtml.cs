@@ -6,6 +6,7 @@ using ConsoleApp.Control;
 using ConsoleApp.Data;
 using ConsoleApp.Objects;
 using DAL;
+using Domain.Objects;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
@@ -34,59 +35,15 @@ namespace WebApp.Pages.Game {
             var ships1 = ctx.Ships.Where(x => x.FlotillaId == flotilla1.BattleFlotillasObjectId).ToList();
             var ships2 = ctx.Ships.Where(x => x.FlotillaId == flotilla2.BattleFlotillasObjectId).ToList();
 
-            Flotilla player1Flotilla = new Flotilla {
-                Destroyed = false, 
-                FlotillaHealth = flotilla1.FlotillaHealth,
-                ShipCount = flotilla1.ShipCount,
-                Ships = new List<Ship>(), 
-                Size = flotilla1.Size
-            };
-            
-            Flotilla player2Flotilla = new Flotilla {
-                Destroyed = false, 
-                FlotillaHealth = flotilla2.FlotillaHealth, 
-                ShipCount = flotilla2.ShipCount,
-                Ships = new List<Ship>(), 
-                Size = flotilla2.Size
-            };
+            Flotilla player1Flotilla = SaveManager.GetFlotilla(flotilla1);
+            Flotilla player2Flotilla = SaveManager.GetFlotilla(flotilla2);
 
             if (player1Flotilla.Destroyed || player2Flotilla.Destroyed) return Page();
 
-            foreach (var ship in ships1) {
-                player1Flotilla.Ships.Add(new Ship {
-                    Health = ship.Health,
-                    Name = ship.Name,
-                    ShipCellsArray = JsonSerializer.Deserialize<int[]>(ship.ShipCellsArray),
-                    Size = ship.Size
-                });
-            }
-            
-            foreach (var ship in ships2) {
-                player2Flotilla.Ships.Add(new Ship {
-                    Health = ship.Health,
-                    Name = ship.Name,
-                    ShipCellsArray = JsonSerializer.Deserialize<int[]>(ship.ShipCellsArray),
-                    Size = ship.Size
-                });
-            }
+            SaveManager.FillFlotilla(player1Flotilla, ships1);
+            SaveManager.FillFlotilla(player2Flotilla, ships2);
 
-            Props = new GameProperties {
-                Id = propsDb.GameId,
-                GameMode = propsDb.GameMode,
-                Player1Name = propsDb.Player1Name,
-                Player2Name = propsDb.Player2Name,
-                Player1Flotilla = player1Flotilla,
-                Player2Flotilla = player2Flotilla,
-                FieldSize = JsonSerializer.Deserialize<int[]>(propsDb.FieldSize),
-                Player1FieldArray = JsonSerializer.Deserialize<string[]>(propsDb.Player1FieldArray),
-                Player2FieldArray = JsonSerializer.Deserialize<string[]>(propsDb.Player2FieldArray),
-                CurrentPlayer = propsDb.CurrentPlayer,
-                Round = propsDb.Round,
-                SelectableRowCount = propsDb.SelectableRowCount,
-                BattleHistory = JsonSerializer.Deserialize<List<string>>(propsDb.BattleHistory),
-                MenuOptions = JsonSerializer.Deserialize<List<string>>(propsDb.MenuOptions)
-            };
-            
+            Props = SaveManager.GetGameProps(propsDb, player1Flotilla, player2Flotilla);
             Props.LoadPlayer1FieldFromArray();
             Props.LoadPlayer2FieldFromArray();
             Props.Player1Flotilla.LoadShipFromArrays();
@@ -116,25 +73,8 @@ namespace WebApp.Pages.Game {
             flotilla2.FlotillaHealth = Props.Player2Flotilla.FlotillaHealth;
             flotilla2.ShipCount = Props.Player2Flotilla.ShipCount;
             
-            int index = 0;
-            while (index < Props.Player1Flotilla.ShipCount) {
-                var shipFromDb = ships1[index];
-                var shipFromGame = Props.Player1Flotilla.Ships[index++];
-                shipFromDb.Name = shipFromGame.Name;
-                shipFromDb.Size = shipFromGame.Size;
-                shipFromDb.Health = shipFromGame.Health;
-                shipFromDb.ShipCellsArray = JsonSerializer.Serialize(shipFromGame.ShipCellsArray);
-            }
-
-            index = 0;
-            while (index < Props.Player2Flotilla.ShipCount) {
-                var shipFromDb = ships2[index];
-                var shipFromGame = Props.Player2Flotilla.Ships[index++];
-                shipFromDb.Name = shipFromGame.Name;
-                shipFromDb.Size = shipFromGame.Size;
-                shipFromDb.Health = shipFromGame.Health;
-                shipFromDb.ShipCellsArray = JsonSerializer.Serialize(shipFromGame.ShipCellsArray);
-            }
+            UpdateShips(Props.Player1Flotilla, ships1);
+            UpdateShips(Props.Player2Flotilla, ships2);
 
             propsDb.Player1FieldArray = JsonSerializer.Serialize(Props.Player1FieldArray);
             propsDb.Player2FieldArray = JsonSerializer.Serialize(Props.Player2FieldArray);
@@ -146,6 +86,18 @@ namespace WebApp.Pages.Game {
             await ctx.SaveChangesAsync();
             
             return Page();
+        }
+
+        private void UpdateShips(Flotilla flotilla, IReadOnlyList<BattleShipsObject> ships) {
+            int index = 0;
+            while (index < flotilla.ShipCount) {
+                BattleShipsObject shipFromDb = ships[index];
+                Ship shipFromGame = flotilla.Ships[index++];
+                shipFromDb.Name = shipFromGame.Name;
+                shipFromDb.Size = shipFromGame.Size;
+                shipFromDb.Health = shipFromGame.Health;
+                shipFromDb.ShipCellsArray = JsonSerializer.Serialize(shipFromGame.ShipCellsArray);
+            }
         }
     }
 }
