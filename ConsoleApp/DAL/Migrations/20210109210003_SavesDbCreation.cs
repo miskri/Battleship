@@ -2,7 +2,7 @@
 
 namespace DAL.Migrations
 {
-    public partial class InitialDbMigration : Migration
+    public partial class SavesDbCreation : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -93,6 +93,7 @@ namespace DAL.Migrations
                 {
                     BattleFlotillasObjectId = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    ShipCount = table.Column<int>(type: "INTEGER", nullable: false),
                     Size = table.Column<int>(type: "INTEGER", nullable: false),
                     FlotillaHealth = table.Column<int>(type: "INTEGER", nullable: false),
                     BattleShipsObjectId = table.Column<int>(type: "INTEGER", nullable: true),

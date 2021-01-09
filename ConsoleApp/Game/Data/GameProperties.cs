@@ -59,7 +59,7 @@ namespace ConsoleApp.Data {
         }
 
         public int GetEnemyShipsCount() {
-            return CurrentPlayer == Player1Name ? Player2Flotilla.Ships.Count : Player1Flotilla.Ships.Count;
+            return CurrentPlayer == Player1Name ? Player2Flotilla.ShipCount : Player1Flotilla.ShipCount;
         }
 
         public void LoadPlayer1FieldToArray() {

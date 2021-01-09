@@ -36,7 +36,8 @@ namespace WebApp.Pages.Game {
 
             Flotilla player1Flotilla = new Flotilla {
                 Destroyed = false, 
-                FlotillaHealth = flotilla1.FlotillaHealth, 
+                FlotillaHealth = flotilla1.FlotillaHealth,
+                ShipCount = flotilla1.ShipCount,
                 Ships = new List<Ship>(), 
                 Size = flotilla1.Size
             };
@@ -44,11 +45,12 @@ namespace WebApp.Pages.Game {
             Flotilla player2Flotilla = new Flotilla {
                 Destroyed = false, 
                 FlotillaHealth = flotilla2.FlotillaHealth, 
+                ShipCount = flotilla2.ShipCount,
                 Ships = new List<Ship>(), 
                 Size = flotilla2.Size
             };
 
-            if (player1Flotilla.FlotillaHealth == 0 || player2Flotilla.FlotillaHealth == 0) return Page();
+            if (player1Flotilla.Destroyed || player2Flotilla.Destroyed) return Page();
 
             foreach (var ship in ships1) {
                 player1Flotilla.Ships.Add(new Ship {
@@ -108,14 +110,16 @@ namespace WebApp.Pages.Game {
 
             flotilla1.Size = Props.Player1Flotilla.Size;
             flotilla1.FlotillaHealth = Props.Player1Flotilla.FlotillaHealth;
+            flotilla1.ShipCount = Props.Player1Flotilla.ShipCount;
             
             flotilla2.Size = Props.Player2Flotilla.Size;
             flotilla2.FlotillaHealth = Props.Player2Flotilla.FlotillaHealth;
-
+            flotilla2.ShipCount = Props.Player2Flotilla.ShipCount;
+            
             int index = 0;
-            while (index < Props.Player1Flotilla.Ships.Count) {
+            while (index < Props.Player1Flotilla.ShipCount) {
                 var shipFromDb = ships1[index];
-                var shipFromGame = Props.Player1Flotilla.Ships[index];
+                var shipFromGame = Props.Player1Flotilla.Ships[index++];
                 shipFromDb.Name = shipFromGame.Name;
                 shipFromDb.Size = shipFromGame.Size;
                 shipFromDb.Health = shipFromGame.Health;
@@ -123,7 +127,7 @@ namespace WebApp.Pages.Game {
             }
 
             index = 0;
-            while (index < Props.Player2Flotilla.Ships.Count) {
+            while (index < Props.Player2Flotilla.ShipCount) {
                 var shipFromDb = ships2[index];
                 var shipFromGame = Props.Player2Flotilla.Ships[index++];
                 shipFromDb.Name = shipFromGame.Name;

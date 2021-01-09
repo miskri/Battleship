@@ -79,12 +79,14 @@ namespace ConsoleApp.Control {
             Flotilla flotilla1 = props.Player1Flotilla;
             var flotillaInDb1 = new BattleFlotillasObject {
                 Size = flotilla1.Size,
-                FlotillaHealth = flotilla1.FlotillaHealth
+                FlotillaHealth = flotilla1.FlotillaHealth,
+                ShipCount = flotilla1.ShipCount
             };
             Flotilla flotilla2 = save.Properties.Player2Flotilla;
             var flotillaInDb2 = new BattleFlotillasObject {
                 Size = flotilla2.Size,
-                FlotillaHealth = flotilla2.FlotillaHealth
+                FlotillaHealth = flotilla2.FlotillaHealth,
+                ShipCount = flotilla2.ShipCount
             };
 
             ctx.Flotillas.Add(flotillaInDb1);
@@ -173,6 +175,7 @@ namespace ConsoleApp.Control {
             Flotilla player1Flotilla = new Flotilla {
                 Destroyed = false, 
                 FlotillaHealth = flotilla1.FlotillaHealth, 
+                ShipCount = flotilla1.ShipCount,
                 Ships = new List<Ship>(), 
                 Size = flotilla1.Size
             };
@@ -180,6 +183,7 @@ namespace ConsoleApp.Control {
             Flotilla player2Flotilla = new Flotilla {
                 Destroyed = false, 
                 FlotillaHealth = flotilla2.FlotillaHealth, 
+                ShipCount = flotilla2.ShipCount,
                 Ships = new List<Ship>(), 
                 Size = flotilla2.Size
             };

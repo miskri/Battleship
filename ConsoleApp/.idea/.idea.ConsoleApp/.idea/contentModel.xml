@@ -12,8 +12,8 @@
         <e p="bin" t="ExcludeRecursive" />
         <e p="DAL.csproj" t="IncludeRecursive" />
         <e p="Migrations" t="Include">
-          <e p="20210108152043_InitialDbMigration.cs" t="Include" />
-          <e p="20210108152043_InitialDbMigration.Designer.cs" t="Include" />
+          <e p="20210109210003_SavesDbCreation.cs" t="Include" />
+          <e p="20210109210003_SavesDbCreation.Designer.cs" t="Include" />
           <e p="AppDbContextModelSnapshot.cs" t="Include" />
         </e>
         <e p="obj" t="ExcludeRecursive">
@@ -110,7 +110,12 @@
           <e p="saves.json" t="Include" />
           <e p="user_settings.json" t="Include" />
         </e>
-        <e p="RoundHistory" t="Include" />
+        <e p="RoundHistory" t="Include">
+          <e p="-1391204296.json" t="Include" />
+          <e p="-737719047.json" t="Include" />
+          <e p="-902193659.json" t="Include" />
+          <e p="1984089474.json" t="Include" />
+        </e>
         <e p="Utils" t="Include">
           <e p="DataUtils.cs" t="Include" />
           <e p="StringValidator.cs" t="Include" />

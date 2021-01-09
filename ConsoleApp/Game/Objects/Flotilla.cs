@@ -11,6 +11,7 @@ namespace ConsoleApp.Objects {
 
         public bool Destroyed = false;
         public List<Ship> Ships { get; set; }
+        public int ShipCount { get; set; }
         public int Size { get; set; }
         public int FlotillaHealth { get; set; }
 
@@ -18,6 +19,7 @@ namespace ConsoleApp.Objects {
         public void AddShip(Ship ship) {
             if (Ships == null) Ships = new List<Ship>();
             Ships.Add(ship);
+            ShipCount++;
             Size += ship.Size;
             FlotillaHealth += ship.Health;
         }
@@ -29,7 +31,7 @@ namespace ConsoleApp.Objects {
                     string msg = $"{Color.YellowText}Round {props.Round} - {props.CurrentPlayer}{Color.RedText} " +
                                  $"destroys {Color.YellowText}{props.GetDefenderName()} {ship.Name}!";
                     props.Manager.AddToBattleHistory(props, message: msg);
-                    Ships.Remove(ship);
+                    ShipCount--;
                 }
 
                 if (--FlotillaHealth == 0) Destroyed = true;

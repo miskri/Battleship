@@ -31,6 +31,9 @@ namespace DAL.Migrations
                     b.Property<int?>("PropertiesFlotillasObjectId")
                         .HasColumnType("INTEGER");
 
+                    b.Property<int>("ShipCount")
+                        .HasColumnType("INTEGER");
+
                     b.Property<int>("Size")
                         .HasColumnType("INTEGER");
 

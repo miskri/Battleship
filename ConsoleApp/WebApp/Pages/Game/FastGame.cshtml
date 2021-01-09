@@ -53,17 +53,18 @@
             </div>
         }
     </div>
+    <div class="battleinfo">
         <p>This is  @Model.Props.CurrentPlayer turn!</p>
-        <p>Ships in enemy flotilla: @Model.Props.Player2Flotilla.Ships.Count</p>
+        <p>Ships in enemy flotilla: @Model.Props.Player2Flotilla.ShipCount</p>
         <p>Battle history: </p>
         <p>@Model.Props.BattleHistory[^2]</p>
         <p>@Model.Props.BattleHistory[^1]</p>
-    <div>
-        
     </div>
-    @if (Model.Props.Player1Flotilla.FlotillaHealth == 0 || Model.Props.Player2Flotilla.FlotillaHealth == 0) {
+        
+    @if (Model.Props.Player1Flotilla.Destroyed || Model.Props.Player2Flotilla.Destroyed) {
         <script type="text/javascript" async defer>
                 $(".board").hide();
+                $(".battleinfo").hide();
                 $(".text-center").append(`
                     <div class="message">@Html.Raw(Model.Props.Player2Flotilla.FlotillaHealth == 0 ? 
                                              Model.Props.Player1Name : Model.Props.Player2Name) wins the game! Congratulations!

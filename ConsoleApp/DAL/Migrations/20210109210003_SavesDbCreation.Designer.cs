@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210108152043_InitialDbMigration")]
-    partial class InitialDbMigration
+    [Migration("20210109210003_SavesDbCreation")]
+    partial class SavesDbCreation
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -31,6 +31,9 @@ namespace DAL.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<int?>("PropertiesFlotillasObjectId")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("ShipCount")
                         .HasColumnType("INTEGER");
 
                     b.Property<int>("Size")
