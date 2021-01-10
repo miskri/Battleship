@@ -14,26 +14,26 @@ using Microsoft.EntityFrameworkCore;
 namespace WebApp.Pages.Game {
     public class FastGame : PageModel {
 
-        private readonly AppDbContext ctx;
+        private readonly AppDbContext _ctx;
         public GameProperties Props;
         public int GameId;
 
         public FastGame(AppDbContext ctx) {
-            this.ctx = ctx;
+            _ctx = ctx;
         }
         
         public async Task<ActionResult> OnGetAsync(int? gameId, int? row, int? col) {
             if (gameId == null) return RedirectToPage("/");
             GameId = gameId.Value;
 
-            var save = await ctx.Saves.FirstAsync(x => x.SaveObjectId == gameId.Value);
+            var save = await _ctx.Saves.FirstAsync(x => x.SaveObjectId == gameId.Value);
             
-            var propsDb = ctx.Properties.First(x => x.BattlePropertiesObjectId == save.BattlePropertiesObjectId);
-            var test = ctx.PropertiesFlotillas.Where(x => x.BattleId == propsDb.BattlePropertiesObjectId).ToList();
-            var flotilla1 = ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[1].FlotillaId);
-            var flotilla2 = ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[0].FlotillaId);
-            var ships1 = ctx.Ships.Where(x => x.FlotillaId == flotilla1.BattleFlotillasObjectId).ToList();
-            var ships2 = ctx.Ships.Where(x => x.FlotillaId == flotilla2.BattleFlotillasObjectId).ToList();
+            var propsDb = _ctx.Properties.First(x => x.BattlePropertiesObjectId == save.BattlePropertiesObjectId);
+            var test = _ctx.PropertiesFlotillas.Where(x => x.BattleId == propsDb.BattlePropertiesObjectId).ToList();
+            var flotilla1 = _ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[1].FlotillaId);
+            var flotilla2 = _ctx.Flotillas.First(x => x.BattleFlotillasObjectId == test[0].FlotillaId);
+            var ships1 = _ctx.Ships.Where(x => x.FlotillaId == flotilla1.BattleFlotillasObjectId).ToList();
+            var ships2 = _ctx.Ships.Where(x => x.FlotillaId == flotilla2.BattleFlotillasObjectId).ToList();
 
             Flotilla player1Flotilla = SaveManager.GetFlotilla(flotilla1);
             Flotilla player2Flotilla = SaveManager.GetFlotilla(flotilla2);
@@ -83,7 +83,7 @@ namespace WebApp.Pages.Game {
             propsDb.BattleHistory = JsonSerializer.Serialize(Props.BattleHistory);
             propsDb.MenuOptions = JsonSerializer.Serialize(Props.MenuOptions);
             
-            await ctx.SaveChangesAsync();
+            await _ctx.SaveChangesAsync();
             
             return Page();
         }

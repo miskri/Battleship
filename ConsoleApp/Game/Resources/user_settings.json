@@ -1,13 +1,15 @@
 {
   "ShipArrangement": false,
   "ShipCount": [
-    1,
+    3,
+    2,
     1,
     1,
     1,
     1
   ],
   "ShipSettings": [
+    6,
     5,
     4,
     3,
@@ -16,9 +18,10 @@
   ],
   "BattlefieldSize": [
     10,
-    10
+    15
   ],
   "ShipNames": [
+    "Hunter",
     "Carrier",
     "Battleship",
     "Submarine",

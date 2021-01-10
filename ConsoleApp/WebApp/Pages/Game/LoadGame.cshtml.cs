@@ -30,7 +30,7 @@ namespace WebApp.Pages.Game
         }
         
         public RedirectToPageResult OnPost(string saveName) {
-            Save save = SaveManager.GetSave(saveName);
+            Save save = SaveManager.GetSaveReference(saveName);
             SaveManager.DeleteSavedGame(save);
             return RedirectToPage("./LoadGame");
         }

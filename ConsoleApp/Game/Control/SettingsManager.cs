@@ -13,11 +13,14 @@ namespace ConsoleApp.Control {
         
         public Settings UserSettings { get; private set; }
         public Settings DefaultSettings { get; private set; }
+
+        private const string Path = "C:\\Users\\Mihhail\\RiderProjects\\icd0008-2020f\\ConsoleApp\\Game\\Resources";
+
         private void SaveUserSettings(Settings settings) {
             UserSettings = settings;
             MenuDataContainer.UserSettings = UserSettings;
             
-            string path = $"{DataUtils.Path}Resources/user_settings.json";
+            string path = $"{Path}/user_settings.json";
             StreamWriter fileUserSettings = new StreamWriter(path);
             string jsonString = JsonSerializer.Serialize(settings, DataUtils.JsonOptions);
             
@@ -27,7 +30,7 @@ namespace ConsoleApp.Control {
         
         public void LoadSettings() {
             // load default settings
-            string pathDefaultSettings = $"{DataUtils.Path}Resources/default_settings.json";
+            string pathDefaultSettings = $"{Path}/default_settings.json";
             StreamReader fileDefaultSettings = new StreamReader(pathDefaultSettings);
             
             string jsonString = fileDefaultSettings.ReadToEnd();
@@ -35,7 +38,7 @@ namespace ConsoleApp.Control {
             fileDefaultSettings.Close();
             
             // load user settings
-            string pathUserSettings = $"{DataUtils.Path}Resources/user_settings.json"; 
+            string pathUserSettings = $"{Path}/user_settings.json"; 
             StreamReader fileUserSettings = new StreamReader(pathUserSettings);
             
             jsonString = fileUserSettings.ReadToEnd();
@@ -46,7 +49,7 @@ namespace ConsoleApp.Control {
         public void ResetSettingsToDefault() {
             UserSettings = DefaultSettings.DeepClone(); // Data.DeepClone(obj)
             MenuDataContainer.UserSettings = UserSettings;
-            string path = $"{DataUtils.Path}Resources/user_settings.json";
+            string path = $"{Path}/user_settings.json";
             
             StreamWriter fileUserSettings = new StreamWriter(path);
             string jsonString = JsonSerializer.Serialize(DefaultSettings, DataUtils.JsonOptions);

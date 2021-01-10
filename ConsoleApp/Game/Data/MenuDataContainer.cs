@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using ConsoleApp.Control;
 using ConsoleApp.Objects;
 
@@ -48,7 +49,7 @@ namespace ConsoleApp.Data {
                     return "Select game mode";
                 
                 case "Load Game":
-                    return SaveManager.Saves.Count == 0 ? "You don't have any saves yet" : "Load Game";
+                    return SaveManager.GetSavesList().Count == 0 ? "You don't have any saves yet" : "Load Game";
 
                 case "Player vs Player": case "Player vs AI": case "AI vs AI":
                     return "Which battle settings we should use?";

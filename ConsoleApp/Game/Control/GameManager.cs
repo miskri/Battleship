@@ -59,16 +59,12 @@ namespace ConsoleApp.Control {
             StartGame(props);
         }
 
-        public void LoadFastGameForWeb(GameProperties props) {
+        public static void LoadFastGameForWeb(GameProperties props, string type) {
             props.Player1Name = "Human";
             props.Player2Name = "AI";
-            Settings settings = new Settings {
-                BattlefieldSize = new []{10, 10},
-                ShipArrangement = false,
-                ShipCount = new []{1, 1, 1, 1, 1},
-                ShipNames = new []{"Carrier", "Battleship", "Submarine", "Cruiser", "Patrol"},
-                ShipSettings = new []{5, 4, 3, 2, 1}
-            };
+            SettingsManager settingsManager = new SettingsManager();
+            settingsManager.LoadSettings();
+            Settings settings = type == "Default Game" ? settingsManager.DefaultSettings : settingsManager.UserSettings;
             
             (props.Player1Field, props.Player1Flotilla) = FieldManager.GenerateField(settings);
             (props.Player2Field, props.Player2Flotilla) = FieldManager.GenerateField(settings);
